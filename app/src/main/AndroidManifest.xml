@@ -17,7 +17,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".BaseNavDrawerActivity"></activity>
+        <activity android:name=".activities.BaseNavDrawerActivity" />
+        <activity android:name=".activities.ProfileActivity" />
+        <activity android:name=".activities.CartActivity" />
+        <activity android:name=".activities.SubscriptionsActivity" />
+        <activity android:name=".activities.MedicineActivity" />
+        <activity android:name=".activities.InstructionsActivity" />
+        <activity android:name=".activities.SettingsActivity" />
+        <activity android:name=".activities.AboutActivity"></activity>
     </application>
 
 </manifest>
