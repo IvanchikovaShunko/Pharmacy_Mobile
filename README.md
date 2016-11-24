@@ -1,2 +1,2 @@
-# Pharmacy_Mobile
+# Pharmacy Mobile App
 Pharmacy Android App
