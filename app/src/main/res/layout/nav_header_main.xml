@@ -24,9 +24,10 @@
 
         <ImageView
             android:id="@+id/img_profile"
-            android:layout_width="80dp"
+            android:layout_width="75dp"
             app:srcCompat="@drawable/profile"
-            android:layout_height="80dp" />
+            android:layout_height="75dp"
+            android:layout_marginTop="16dp" />
 
         <TextView
             android:id="@+id/header_name"

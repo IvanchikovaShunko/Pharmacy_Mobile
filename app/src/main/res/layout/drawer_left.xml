@@ -10,6 +10,5 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_main"
-        app:menu="@menu/drawer"
-        app:itemBackground="@drawable/drawer_item_bg"/>
+        app:menu="@menu/drawer" />
 </merge>
