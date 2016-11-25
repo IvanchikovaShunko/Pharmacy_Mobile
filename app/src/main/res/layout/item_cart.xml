@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/link_text_view">
+
+    <ImageView
+        android:layout_width="72dp"
+        app:srcCompat="@drawable/ic_placeholder"
+        android:layout_margin="8dp"
+        android:id="@+id/photo_view"
+        android:layout_height="72dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/photo_view"
+        android:layout_marginLeft="8dp"
+        android:gravity="center_vertical"
+        android:layout_marginTop="32dp"
+        android:id="@+id/linear_layout">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primary_text"
+            android:gravity="center_vertical"
+            android:id="@+id/medicine_name"
+            tools:text="Medicine Name"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/linear_layout"
+        android:gravity="center_vertical"
+        android:layout_marginTop="8dp">
+
+        <Spinner
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner"
+            android:layout_width="64dp" />
+
+        <ImageView
+            app:srcCompat="@drawable/ic_clear_black_24dp"
+            android:layout_alignRight="@+id/linear_layout"
+            android:layout_margin="16dp"
+            android:layout_height="32dp"
+            android:layout_width="32dp"
+            android:id="@+id/add_to_cart_imageView"
+            android:clickable="true" />
+    </LinearLayout>
+
+</RelativeLayout>
