@@ -5,8 +5,11 @@
     <color name="colorAccent">#f44336</color>
 
     <color name="linkTextViewPressed">#ef9a9a</color>
-    <color name="linkTextViewNormal">#FFF5F5F5</color>
+    <color name="linkTextViewNormal">#FFFFFF</color>
 
     <color name="groupTitle">#212121</color>
     <color name="divider_grey">#efefef</color>
+
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#929292</color>
 </resources>

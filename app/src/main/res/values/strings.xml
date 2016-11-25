@@ -14,7 +14,7 @@
     <string name="my_cart">My cart</string>
     <string name="my_subscriptions">My subscriptions</string>
     <string name="my_orders">My orders</string>
-    <string name="name">NAME:</string>
-    <string name="address">Address</string>
+    <string name="name">Name:</string>
+    <string name="address">Address:</string>
     <string name="log_out">Log out</string>
 </resources>

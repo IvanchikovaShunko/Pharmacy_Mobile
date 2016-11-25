@@ -44,7 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/appbar"
-                android:id="@+id/@+id/list_view_cart" />
+                android:id="@+id/list_view_cart" />
 
 
         </RelativeLayout>

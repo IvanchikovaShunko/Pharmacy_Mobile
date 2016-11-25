@@ -91,7 +91,8 @@
                         android:layout_margin="8dp"
                         android:layout_toRightOf="@+id/textView3"
                         android:layout_weight="1"
-                        android:text="Full name" />
+                        android:text="Full name"
+                        android:textColor="@color/primary_text" />
 
                 </RelativeLayout>
 
@@ -112,16 +113,21 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
                         android:layout_toRightOf="@+id/textView4"
-                        android:text="TextView" />
+                        android:text="TextView"
+                        android:textColor="@color/primary_text" />
 
 
                 </RelativeLayout>
-
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/divider_grey"
+                    android:layout_marginTop="48dp"/>
                 <TextView
                     android:id="@+id/my_cart_button"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:layout_marginTop="48dp"
+
                     android:clickable="true"
                     android:background="@drawable/link_text_view"
                     android:text="@string/my_cart"
@@ -154,18 +160,30 @@
                     android:background="@drawable/link_text_view"
                     android:text="@string/my_subscriptions"
                     style="@style/AppTheme.ButtonTextView"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/divider_grey" />
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/divider_grey"
+                    android:layout_marginTop="48dp"/>
 
                 <TextView
                     android:id="@+id/logout_button"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:layout_marginTop="48dp"
+
                     android:clickable="true"
                     android:background="@drawable/link_text_view"
                     android:text="@string/log_out"
                     style="@style/AppTheme.ButtonTextView"/>
-
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/divider_grey" />
             </LinearLayout>
         </ScrollView>
 
@@ -177,7 +195,8 @@
             android:src="@drawable/ic_mode_edit_white_24dp"
             app:fabSize="normal"
             app:layout_anchor="@id/main.appbar"
-            app:layout_anchorGravity="bottom|right|end" />
+            app:layout_anchorGravity="bottom|right|end"
+            android:id="@+id/fab" />
     </android.support.design.widget.CoordinatorLayout>
 
     <include layout="@layout/drawer_left" />

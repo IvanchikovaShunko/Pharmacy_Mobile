@@ -26,6 +26,7 @@ public abstract class BaseNavDrawerActivity extends AppCompatActivity {
     private ImageView headerbackgroudImageView, profileImageView;
     private TextView nameTextView, emailTextView;
     private boolean isOpenLoginPage = false;
+    private Toolbar toolbar;
 
     protected abstract void initActivityGUI();
 
@@ -39,6 +40,7 @@ public abstract class BaseNavDrawerActivity extends AppCompatActivity {
         initDrawer();
         loadNavHeader();
         setUpNavigationView();
+        initActivityGUI();
         if (isOpenLoginPage)
             loadLogInView();
     }
@@ -63,6 +65,11 @@ public abstract class BaseNavDrawerActivity extends AppCompatActivity {
         emailTextView = (TextView) navHeader.findViewById(R.id.header_email);
         headerbackgroudImageView = (ImageView) navHeader.findViewById(R.id.img_header_bg);
         profileImageView = (ImageView) navHeader.findViewById(R.id.img_profile);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
 
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawer,
                 (Toolbar) findViewById(R.id.toolbar),
