@@ -11,4 +11,10 @@
     <string name="drawer_item_subscriptions">Subscriptions</string>
     <string name="open_drawer">Open drawer</string>
     <string name="close_drawer">Close Drawer</string>
+    <string name="my_cart">My cart</string>
+    <string name="my_subscriptions">My subscriptions</string>
+    <string name="my_orders">My orders</string>
+    <string name="name">NAME:</string>
+    <string name="address">Address</string>
+    <string name="log_out">Log out</string>
 </resources>

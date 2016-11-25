@@ -8,4 +8,25 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.GroupTitleText" parent="AppTheme">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/groupTitle</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:layout_marginLeft">16dp</item>
+    </style>
+
+    <style name="AppTheme.ButtonTextView" parent="AppTheme">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/groupTitle</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:background">@drawable/link_text_view</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:gravity"> center_vertical</item>
+
+    </style>
+
+
+
 </resources>
