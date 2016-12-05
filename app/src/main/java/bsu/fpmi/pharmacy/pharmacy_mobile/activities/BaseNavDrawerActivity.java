@@ -10,12 +10,15 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import bsu.fpmi.pharmacy.pharmacy_mobile.R;
+import bsu.fpmi.pharmacy.pharmacy_mobile.api.entity.User;
+import bsu.fpmi.pharmacy.pharmacy_mobile.serialize.UserSerializer;
 
 public abstract class BaseNavDrawerActivity extends AppCompatActivity {
     protected Handler handler;
@@ -25,8 +28,10 @@ public abstract class BaseNavDrawerActivity extends AppCompatActivity {
     private View navHeader;
     private ImageView headerbackgroudImageView, profileImageView;
     private TextView nameTextView, emailTextView;
-    private boolean isOpenLoginPage = false;
+    protected boolean isOpenLoginPage = false;
     private Toolbar toolbar;
+
+    protected User user;
 
     protected abstract void initActivityGUI();
 
@@ -34,23 +39,37 @@ public abstract class BaseNavDrawerActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
-        setContentView(getContentView());
-        handler = new Handler();
-        initDrawer();
-        loadNavHeader();
-        setUpNavigationView();
-        initActivityGUI();
-        if (isOpenLoginPage)
-            loadLogInView();
+//        if (isOpenLoginPage)
+//            loadLogInView();
+//        else {
+            setContentView(getContentView());
+            handler = new Handler();
+            initDrawer();
+            setUpNavigationView();
+            initActivityGUI();
+            initUser();
+            loadNavHeader();
+
+
+    }
+
+    private void initUser() {
+        Bundle args = getIntent().getExtras();
+        if (args != null){
+            String userJSON = args.getString("USER");
+            if (!TextUtils.isEmpty(userJSON)){
+                user = new UserSerializer().deserializeModel(userJSON);
+            }
+        }
     }
 
     protected void loadNavHeader() {
-//        if (user != null) {
-//            User user = new UserDAO().getUser();
-//            nameTextView.setText(user.getNickname());
-//            emailTextView.setText(user.getEmail());
-//        }
+        if (user != null) {
+            nameTextView.setText(user.username);
+            emailTextView.setText(user.userDetail.email);
+        }
 
     }
 
@@ -95,6 +114,11 @@ public abstract class BaseNavDrawerActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    protected void setOpenLoginPage() {
+        if (user == null)
+            isOpenLoginPage = true;
     }
 
     private void onNavItemClick(int itemId) {
@@ -163,11 +187,13 @@ public abstract class BaseNavDrawerActivity extends AppCompatActivity {
     }
 
     protected void loadLogInView() {
-//        isOpenLoginPage = false;
-//        Intent intent = new Intent(this, LoginActivity.class);
+        isOpenLoginPage = false;
+        Intent intent = new Intent(this, SignInActivity.class);
 //        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//        startActivity(intent);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 
     @Override

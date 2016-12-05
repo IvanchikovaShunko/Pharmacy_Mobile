@@ -1,5 +1,6 @@
 package bsu.fpmi.pharmacy.pharmacy_mobile.activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +15,7 @@ import bsu.fpmi.pharmacy.pharmacy_mobile.R;
 import bsu.fpmi.pharmacy.pharmacy_mobile.api.PharmacyRESTService;
 import bsu.fpmi.pharmacy.pharmacy_mobile.api.entity.User;
 import bsu.fpmi.pharmacy.pharmacy_mobile.api.service.UserService;
+import bsu.fpmi.pharmacy.pharmacy_mobile.serialize.UserSerializer;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -24,6 +26,8 @@ public class SignInActivity extends AppCompatActivity {
     EditText passwordEditText;
     Button signInButton;
     Button signUpButton;
+
+    ProgressDialog progressDialog;
 
 
     @Override
@@ -38,6 +42,10 @@ public class SignInActivity extends AppCompatActivity {
         passwordEditText = (EditText) findViewById(R.id.passwordEditText);
         signInButton = (Button) findViewById(R.id.signInButton);
         signUpButton = (Button) findViewById(R.id.signUpButton);
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.setMessage("Signing in...");
+
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,12 +91,20 @@ public class SignInActivity extends AppCompatActivity {
         if (cancel) {
             focusView.requestFocus();
         } else {
-            //showProgress(true);
+            progressDialog.show();
             mAuthTask = new UserLoginTask(login, password);
             mAuthTask.execute((Void) null);
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(getApplicationContext(), MedicineActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivity(intent);
+    }
 
     public class UserLoginTask extends AsyncTask<Void, Void, Void> {
         private final String mLogin;
@@ -114,15 +130,14 @@ public class SignInActivity extends AppCompatActivity {
                     } else {
                         Intent intent = new Intent(getApplicationContext(), MedicineActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        intent.putExtra("USER", new UserSerializer().serializeModel(user));
                         startActivity(intent);
                     }
                 }
 
                 @Override
                 public void onFailure(Call<User> call, Throwable t) {
-                    loginEditText.setError(getString(R.string.error_invalid_email));
-                    passwordEditText.setError(getString(R.string.error_incorrect_password));
-                    passwordEditText.requestFocus();
+                    Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -132,13 +147,13 @@ public class SignInActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(final Void success) {
             mAuthTask = null;
-            //showProgress(false);
+            progressDialog.hide();
         }
 
         @Override
         protected void onCancelled() {
             mAuthTask = null;
-            //showProgress(false);
+            progressDialog.hide();
         }
     }
 
