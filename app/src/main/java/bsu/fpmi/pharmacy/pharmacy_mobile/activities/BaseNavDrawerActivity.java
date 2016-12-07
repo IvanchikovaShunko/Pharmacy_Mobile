@@ -3,6 +3,7 @@ package bsu.fpmi.pharmacy.pharmacy_mobile.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.IntegerRes;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -41,28 +42,27 @@ public abstract class BaseNavDrawerActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-//        if (isOpenLoginPage)
-//            loadLogInView();
-//        else {
-            setContentView(getContentView());
-            handler = new Handler();
-            initDrawer();
-            setUpNavigationView();
-            initActivityGUI();
-            initUser();
-            loadNavHeader();
+        setContentView(getContentView());
+        handler = new Handler();
+        initDrawer();
+        setUpNavigationView();
+        initActivityGUI();
+        initUser();
+        loadNavHeader();
 
 
     }
 
     private void initUser() {
-        Bundle args = getIntent().getExtras();
-        if (args != null){
-            String userJSON = args.getString("USER");
-            if (!TextUtils.isEmpty(userJSON)){
-                user = new UserSerializer().deserializeModel(userJSON);
+       // if (user == null) {
+            Bundle args = getIntent().getExtras();
+            if (args != null) {
+                String userJSON = args.getString("USER");
+                if (!TextUtils.isEmpty(userJSON)) {
+                    user = new UserSerializer().deserializeModel(userJSON);
+                }
             }
-        }
+        //}
     }
 
     protected void loadNavHeader() {
@@ -72,7 +72,6 @@ public abstract class BaseNavDrawerActivity extends AppCompatActivity {
         }
 
     }
-
 
 
     protected void initDrawer() {
@@ -116,10 +115,6 @@ public abstract class BaseNavDrawerActivity extends AppCompatActivity {
         });
     }
 
-    protected void setOpenLoginPage() {
-        if (user == null)
-            isOpenLoginPage = true;
-    }
 
     private void onNavItemClick(int itemId) {
         Intent launchIntent = null;
@@ -127,55 +122,55 @@ public abstract class BaseNavDrawerActivity extends AppCompatActivity {
             case R.id.nav_profile:
                 if (this instanceof ProfileActivity)
                     break;
-                launchIntent = new Intent(this, ProfileActivity.class)
-                        .addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-                        .addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                if (user == null)
+                    launchIntent = new Intent(this, SignInActivity.class);
+                else
+                    launchIntent = new Intent(this, ProfileActivity.class);
                 break;
             case R.id.nav_cart:
                 if (this instanceof CartActivity)
                     break;
-                launchIntent = new Intent(this, CartActivity.class)
-                        .addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-                        .addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                if (user == null)
+                    launchIntent = new Intent(this, SignInActivity.class);
+                else
+                    launchIntent = new Intent(this, CartActivity.class);
                 break;
             case R.id.nav_subscriptions:
                 if (this instanceof SubscriptionsActivity)
                     break;
-                launchIntent = new Intent(this, SubscriptionsActivity.class)
-                        .addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-                        .addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                if (user == null)
+                    launchIntent = new Intent(this, SignInActivity.class);
+                else
+                    launchIntent = new Intent(this, SubscriptionsActivity.class);
                 break;
             case R.id.nav_medicine:
                 if (this instanceof MedicineActivity)
                     break;
-                launchIntent = new Intent(this, MedicineActivity.class)
-                        .addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-                        .addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                launchIntent = new Intent(this, MedicineActivity.class);
                 break;
             case R.id.nav_instructions:
                 if (this instanceof InstructionsActivity)
                     break;
-                launchIntent = new Intent(this, InstructionsActivity.class)
-                        .addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-                        .addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                launchIntent = new Intent(this, InstructionsActivity.class);
                 break;
             case R.id.nav_settings:
                 if (this instanceof SettingsActivity)
                     break;
-                launchIntent = new Intent(this, SettingsActivity.class)
-                        .addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-                        .addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                launchIntent = new Intent(this, SettingsActivity.class);
                 break;
             case R.id.nav_about:
                 if (this instanceof AboutActivity)
                     break;
-                launchIntent = new Intent(this, AboutActivity.class)
-                        .addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                launchIntent = new Intent(this, AboutActivity.class);
                 break;
         }
 
         if (launchIntent != null) {
             final Intent finalLaunchIntent = launchIntent;
+            finalLaunchIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                    .addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            finalLaunchIntent.putExtra("USER", new UserSerializer().serializeModel(user));
+
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {

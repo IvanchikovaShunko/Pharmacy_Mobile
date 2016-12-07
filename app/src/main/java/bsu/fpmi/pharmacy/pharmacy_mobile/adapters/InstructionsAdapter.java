@@ -10,8 +10,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import bsu.fpmi.pharmacy.pharmacy_mobile.R;
-import bsu.fpmi.pharmacy.pharmacy_mobile.entity.Medicine;
-
+import bsu.fpmi.pharmacy.pharmacy_mobile.api.entity.Medicine;
 
 
 public class InstructionsAdapter extends BaseAdapter {
@@ -49,8 +48,8 @@ public class InstructionsAdapter extends BaseAdapter {
         }
         Medicine medicine = (Medicine) getItem(i);
 
-        ((TextView) cView.findViewById(R.id.medicine_name)).setText(medicine.getName());
-        ((TextView) cView.findViewById(R.id.medicine_state)).setText(medicine.getState() + ", " + medicine.getWeight() + " г");
+        ((TextView) cView.findViewById(R.id.medicine_name)).setText(medicine.nameMedicine);
+        ((TextView) cView.findViewById(R.id.medicine_state)).setText(medicine.state + ", " + medicine.gramInOne + " г");
 
         return cView;
     }

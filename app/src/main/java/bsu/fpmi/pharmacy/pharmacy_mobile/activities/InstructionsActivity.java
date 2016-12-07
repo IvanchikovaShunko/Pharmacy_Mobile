@@ -10,7 +10,7 @@ import java.util.List;
 import bsu.fpmi.pharmacy.pharmacy_mobile.R;
 import bsu.fpmi.pharmacy.pharmacy_mobile.adapters.InstructionsAdapter;
 import bsu.fpmi.pharmacy.pharmacy_mobile.adapters.MedicineAdapter;
-import bsu.fpmi.pharmacy.pharmacy_mobile.entity.Medicine;
+import bsu.fpmi.pharmacy.pharmacy_mobile.api.entity.Medicine;
 
 public class InstructionsActivity extends BaseNavDrawerActivity {
     private ListView listView;
@@ -37,11 +37,11 @@ public class InstructionsActivity extends BaseNavDrawerActivity {
     }
 
     private void fillList() {
-        medicineList.add(new Medicine(1, "Но-шпа", "таблетки", null, 200, 12, null));
-        medicineList.add(new Medicine(1, "Терафлю", "порошок", null, 320, 12, null));
-        medicineList.add(new Medicine(1, "Валидол", "таблетки", null, 150, 12, null));
-        medicineList.add(new Medicine(1, "Антифлу", "капсулы", null, 150, 12, null));
-        medicineList.add(new Medicine(1, "Доритрицин", "таблетки", null, 150, 12, null));
+//        medicineList.add(new Medicine(1, "Но-шпа", "таблетки", null, 200, 12, null));
+//        medicineList.add(new Medicine(1, "Терафлю", "порошок", null, 320, 12, null));
+//        medicineList.add(new Medicine(1, "Валидол", "таблетки", null, 150, 12, null));
+//        medicineList.add(new Medicine(1, "Антифлу", "капсулы", null, 150, 12, null));
+//        medicineList.add(new Medicine(1, "Доритрицин", "таблетки", null, 150, 12, null));
 
     }
 }
