@@ -24,4 +24,24 @@ public interface MedicineService {
     @GET("medicine/list")
     Call<List<Medicine>> medicineList();
 
+
+    @POST("medicine/add")
+    Call<Medicine> medicineAdd(
+            @Query(value = "name") String name,
+            @Query(value = "about") String about,
+            @Query(value = "gram_in_one") double gramInOne,
+            @Query(value = "cost") double cost,
+            @Query(value = "quantity") int quantity,
+            @Query(value = "consist") String consist,
+            @Query(value = "state") String state,
+            @Query(value = "dosing") String dosing,
+            @Query(value = "contradictions") String contradictions,
+            @Query(value = "expiration_date") String expireDate
+    );
+
+    @POST("medicine/delete/{id}")
+    Call<Medicine> medicineDelete(
+            @Path("id") int id
+    );
+
 }

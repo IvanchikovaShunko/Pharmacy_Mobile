@@ -7,14 +7,19 @@ import android.support.annotation.IntegerRes;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import bsu.fpmi.pharmacy.pharmacy_mobile.R;
@@ -31,6 +36,7 @@ public abstract class BaseNavDrawerActivity extends AppCompatActivity {
     private TextView nameTextView, emailTextView;
     protected boolean isOpenLoginPage = false;
     private Toolbar toolbar;
+    private LinearLayout headerView;
 
     protected User user;
 
@@ -54,14 +60,14 @@ public abstract class BaseNavDrawerActivity extends AppCompatActivity {
     }
 
     private void initUser() {
-       // if (user == null) {
-            Bundle args = getIntent().getExtras();
-            if (args != null) {
-                String userJSON = args.getString("USER");
-                if (!TextUtils.isEmpty(userJSON)) {
-                    user = new UserSerializer().deserializeModel(userJSON);
-                }
+        // if (user == null) {
+        Bundle args = getIntent().getExtras();
+        if (args != null) {
+            String userJSON = args.getString("USER");
+            if (!TextUtils.isEmpty(userJSON)) {
+                user = new UserSerializer().deserializeModel(userJSON);
             }
+        }
         //}
     }
 
@@ -103,6 +109,15 @@ public abstract class BaseNavDrawerActivity extends AppCompatActivity {
                 super.onDrawerOpened(drawerView);
             }
         };
+
+        headerView = (LinearLayout) navHeader.findViewById(R.id.header_layout);
+        headerView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (user == null)
+                    loadLogInView();
+            }
+        });
     }
 
     private void setUpNavigationView() {
@@ -184,8 +199,6 @@ public abstract class BaseNavDrawerActivity extends AppCompatActivity {
     protected void loadLogInView() {
         isOpenLoginPage = false;
         Intent intent = new Intent(this, SignInActivity.class);
-//        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
@@ -198,4 +211,6 @@ public abstract class BaseNavDrawerActivity extends AppCompatActivity {
             drawer.closeDrawers();
         }
     }
+
+
 }

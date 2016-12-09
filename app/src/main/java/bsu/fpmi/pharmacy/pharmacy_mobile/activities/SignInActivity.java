@@ -3,6 +3,7 @@ package bsu.fpmi.pharmacy.pharmacy_mobile.activities;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -16,6 +17,7 @@ import bsu.fpmi.pharmacy.pharmacy_mobile.api.PharmacyRESTService;
 import bsu.fpmi.pharmacy.pharmacy_mobile.api.entity.User;
 import bsu.fpmi.pharmacy.pharmacy_mobile.api.service.UserService;
 import bsu.fpmi.pharmacy.pharmacy_mobile.serialize.UserSerializer;
+import bsu.fpmi.pharmacy.pharmacy_mobile.util.Dialogs;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -28,6 +30,8 @@ public class SignInActivity extends AppCompatActivity {
     Button signUpButton;
 
     ProgressDialog progressDialog;
+    private TextInputLayout loginWrapper;
+    private TextInputLayout passwordWrapper;
 
 
     @Override
@@ -52,6 +56,22 @@ public class SignInActivity extends AppCompatActivity {
                 attemptLogin();
             }
         });
+        loginEditText.requestFocus();
+
+        signUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
+                startActivity(intent);
+            }
+        });
+        loginWrapper = (TextInputLayout) findViewById(R.id.loginWrapper);
+        loginWrapper.setHint("Login");
+        passwordWrapper = (TextInputLayout) findViewById(R.id.passwordWrapper);
+        passwordWrapper.setHint("Password");
+
+
+
     }
 
     private boolean isPasswordValid(String password) {
@@ -72,18 +92,18 @@ public class SignInActivity extends AppCompatActivity {
         boolean cancel = false;
         View focusView = null;
 
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
-            passwordEditText.setError(getString(R.string.error_invalid_password));
-            focusView = passwordEditText;
-            cancel = true;
-        }
-
         if (TextUtils.isEmpty(login)) {
             loginEditText.setError(getString(R.string.error_field_required));
             focusView = loginEditText;
             cancel = true;
         } else if (TextUtils.isEmpty(password)) {
             passwordEditText.setError(getString(R.string.error_field_required));
+            focusView = passwordEditText;
+            cancel = true;
+        }
+
+        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+            passwordEditText.setError(getString(R.string.error_invalid_password));
             focusView = passwordEditText;
             cancel = true;
         }
@@ -123,9 +143,7 @@ public class SignInActivity extends AppCompatActivity {
                 public void onResponse(Call<User> call, Response<User> response) {
                     User user = response.body();
                     if (user == null) {
-                        Toast.makeText(getApplicationContext(), "Access denied", Toast.LENGTH_SHORT).show();
-                        loginEditText.setError(getString(R.string.error_invalid_email));
-                        passwordEditText.setError(getString(R.string.error_incorrect_password));
+                        Toast.makeText(getApplicationContext(), "Incorrect login or password", Toast.LENGTH_SHORT).show();
                         loginEditText.requestFocus();
                     } else {
                         Intent intent = new Intent(getApplicationContext(), MedicineActivity.class);

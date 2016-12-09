@@ -40,6 +40,12 @@
     <string name="phone">Phone</string>
     <string name="about">About</string>
     <string name="age">Age</string>
+    <string name="sign_up">Sign up</string>
+    <string name="field_required">This field is required</string>
+    <string name="incorrect">Incorrect password or email</string>
+    <string name="unable_to_login">Unable to login</string>
+    <string name="add_medicine">Add medicine</string>
+    <string name="gender">Gender</string>
 
     <string-array name="gender_array">
         <item>Male</item>
