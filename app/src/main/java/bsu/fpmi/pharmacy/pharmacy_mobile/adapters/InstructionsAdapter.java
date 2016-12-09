@@ -49,7 +49,10 @@ public class InstructionsAdapter extends BaseAdapter {
         Medicine medicine = (Medicine) getItem(i);
 
         ((TextView) cView.findViewById(R.id.medicine_name)).setText(medicine.nameMedicine);
-        ((TextView) cView.findViewById(R.id.medicine_state)).setText(medicine.state + ", " + medicine.gramInOne + " г");
+        String text = medicine.aboutMedicine;
+        if (medicine.aboutMedicine.length() > 80)
+            text = medicine.aboutMedicine.substring(0, 80) + " ...";
+        ((TextView) cView.findViewById(R.id.medicine_state)).setText(text);
 
         return cView;
     }

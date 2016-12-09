@@ -19,7 +19,7 @@ public interface UserService {
 
     @POST("user/add")
     Call<User> userAdd(
-            @Query("login") String login,
+            @Query("username") String login,
             @Query("password") String password,
             @Query("name") String name,
             @Query("age") int age,

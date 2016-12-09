@@ -19,7 +19,7 @@
     <string name="log_out">Log out</string>
     <string name="title_activity_login">Sign in</string>
 
-    <!-- Strings related to login -->
+    <!-- Strings related to username -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>
     <string name="action_sign_in">Sign in</string>
@@ -46,6 +46,7 @@
     <string name="unable_to_login">Unable to login</string>
     <string name="add_medicine">Add medicine</string>
     <string name="gender">Gender</string>
+    <string name="delete_medicine">Delete meedicine</string>
 
     <string-array name="gender_array">
         <item>Male</item>

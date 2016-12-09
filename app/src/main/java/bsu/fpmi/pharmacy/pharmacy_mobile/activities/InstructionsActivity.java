@@ -1,8 +1,12 @@
 package bsu.fpmi.pharmacy.pharmacy_mobile.activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +14,14 @@ import java.util.List;
 import bsu.fpmi.pharmacy.pharmacy_mobile.R;
 import bsu.fpmi.pharmacy.pharmacy_mobile.adapters.InstructionsAdapter;
 import bsu.fpmi.pharmacy.pharmacy_mobile.adapters.MedicineAdapter;
+import bsu.fpmi.pharmacy.pharmacy_mobile.api.PharmacyRESTService;
 import bsu.fpmi.pharmacy.pharmacy_mobile.api.entity.Medicine;
+import bsu.fpmi.pharmacy.pharmacy_mobile.api.service.MedicineService;
+import bsu.fpmi.pharmacy.pharmacy_mobile.serialize.MedicineSerializer;
+import bsu.fpmi.pharmacy.pharmacy_mobile.serialize.UserSerializer;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class InstructionsActivity extends BaseNavDrawerActivity {
     private ListView listView;
@@ -19,9 +30,37 @@ public class InstructionsActivity extends BaseNavDrawerActivity {
     List<Medicine> medicineList = new ArrayList<>();
 
     @Override
-    protected void initActivityGUI() {
-        fillList();
+    protected void initActivityGUI() {;
         listView = (ListView) findViewById(R.id.list_view_instructions);
+        MedicineService medicineService = PharmacyRESTService.medicineService();
+        medicineService.medicineList().enqueue(new Callback<List<Medicine>>() {
+            @Override
+            public void onResponse(Call<List<Medicine>> call, Response<List<Medicine>> response) {
+                medicineList = response.body();
+                setAdapter();
+            }
+
+            @Override
+            public void onFailure(Call<List<Medicine>> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(view.getContext(), MedicineInfoActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                        .addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                intent.putExtra("USER", new UserSerializer().serializeModel(user));
+                intent.putExtra("MEDICINE", new MedicineSerializer().serializeModel(medicineList.get(i)));
+                startActivity(intent);
+            }
+        });
+
+    }
+
+    private void setAdapter() {
         adapter = new InstructionsAdapter(this, medicineList);
         listView.setAdapter(adapter);
     }
@@ -36,12 +75,4 @@ public class InstructionsActivity extends BaseNavDrawerActivity {
         super.onCreate(savedInstanceState);
     }
 
-    private void fillList() {
-//        medicineList.add(new Medicine(1, "Но-шпа", "таблетки", null, 200, 12, null));
-//        medicineList.add(new Medicine(1, "Терафлю", "порошок", null, 320, 12, null));
-//        medicineList.add(new Medicine(1, "Валидол", "таблетки", null, 150, 12, null));
-//        medicineList.add(new Medicine(1, "Антифлу", "капсулы", null, 150, 12, null));
-//        medicineList.add(new Medicine(1, "Доритрицин", "таблетки", null, 150, 12, null));
-
-    }
 }

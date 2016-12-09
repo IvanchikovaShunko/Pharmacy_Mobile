@@ -9,11 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import bsu.fpmi.pharmacy.pharmacy_mobile.R;
@@ -113,6 +109,7 @@ public class SignUpActivity extends AppCompatActivity {
             user.userDetail = new UserDetail();
             user.userDetail.gender = genderEditText.getText().toString();
             user.userDetail.about = aboutEditText.getText().toString();
+            if (ageEditText.getText().toString() != null)
             user.userDetail.age = Integer.parseInt(ageEditText.getText().toString());
             user.userDetail.email = emailEditText.getText().toString();
             user.userDetail.homeAddress = addressEditText.getText().toString();

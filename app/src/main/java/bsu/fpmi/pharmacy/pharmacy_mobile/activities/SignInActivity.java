@@ -143,7 +143,7 @@ public class SignInActivity extends AppCompatActivity {
                 public void onResponse(Call<User> call, Response<User> response) {
                     User user = response.body();
                     if (user == null) {
-                        Toast.makeText(getApplicationContext(), "Incorrect login or password", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Incorrect username or password", Toast.LENGTH_SHORT).show();
                         loginEditText.requestFocus();
                     } else {
                         Intent intent = new Intent(getApplicationContext(), MedicineActivity.class);

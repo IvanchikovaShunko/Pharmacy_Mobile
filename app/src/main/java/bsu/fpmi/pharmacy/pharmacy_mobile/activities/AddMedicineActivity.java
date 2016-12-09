@@ -2,6 +2,7 @@ package bsu.fpmi.pharmacy.pharmacy_mobile.activities;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputLayout;
@@ -21,7 +22,9 @@ import java.util.Date;
 import bsu.fpmi.pharmacy.pharmacy_mobile.R;
 import bsu.fpmi.pharmacy.pharmacy_mobile.api.PharmacyRESTService;
 import bsu.fpmi.pharmacy.pharmacy_mobile.api.entity.Medicine;
+import bsu.fpmi.pharmacy.pharmacy_mobile.api.entity.User;
 import bsu.fpmi.pharmacy.pharmacy_mobile.api.service.MedicineService;
+import bsu.fpmi.pharmacy.pharmacy_mobile.serialize.UserSerializer;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -46,11 +49,23 @@ public class AddMedicineActivity extends AppCompatActivity {
     private EditText editTextName, editTextAbout, editTextConsist, editTextContradictions,
             editTextDosing, editTextGramInOne, editTextQuantity, editTextCost, editTextState, editTextDate;
 
+    private User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_medicine);
+        initUser();
         initGUI();
+    }
+
+    private void initUser() {
+        Bundle args = getIntent().getExtras();
+        if (args != null) {
+            String userJSON = args.getString("USER");
+            if (!TextUtils.isEmpty(userJSON)) {
+                user = new UserSerializer().deserializeModel(userJSON);
+            }
+        }
     }
 
     private void initGUI() {
@@ -111,6 +126,7 @@ public class AddMedicineActivity extends AppCompatActivity {
                         date = dateFormat.parse(editTextDate.getText().toString());
                     } catch (ParseException e) {
                        editTextDate.setError("invalid format! MM/dd/yyyy");
+                        return;
                     }
                     medicine.expiration_date = date;
                     new AddMedicineAsyncTask(medicine).execute();
@@ -219,7 +235,7 @@ public class AddMedicineActivity extends AppCompatActivity {
                     if (medicineNew == null) {
                         Toast.makeText(getApplicationContext(), "Unable to add medicine", Toast.LENGTH_SHORT).show();
                     } else {
-                        finish();
+                        launchMedicineIntent();
                     }
                 }
 
@@ -241,5 +257,13 @@ public class AddMedicineActivity extends AppCompatActivity {
         protected void onCancelled() {
             progressDialog.hide();
         }
+    }
+
+    private void launchMedicineIntent() {
+        Intent intent = new Intent(this, MedicineActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                .addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        intent.putExtra("USER", new UserSerializer().serializeModel(user));
+        startActivity(intent);
     }
 }

@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -51,7 +52,15 @@ public class MedicineAdapter extends BaseAdapter{
         Medicine medicine = (Medicine) getItem(i);
 
         ((TextView) cView.findViewById(R.id.medicine_name)).setText(medicine.nameMedicine);
-        ((TextView) cView.findViewById(R.id.medicine_state)).setText(medicine.state + ", " + medicine.gramInOne + " г");
+        ((TextView) cView.findViewById(R.id.medicine_state)).setText(medicine.state + ", " + medicine.cost + " $");
+
+        ImageView addToCartImageView = (ImageView) cView.findViewById(R.id.add_to_cart_imageView);
+        addToCartImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(context, "Medicine added to cart", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         return cView;
     }

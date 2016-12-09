@@ -3,15 +3,12 @@ package bsu.fpmi.pharmacy.pharmacy_mobile.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.IntegerRes;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -60,7 +57,6 @@ public abstract class BaseNavDrawerActivity extends AppCompatActivity {
     }
 
     private void initUser() {
-        // if (user == null) {
         Bundle args = getIntent().getExtras();
         if (args != null) {
             String userJSON = args.getString("USER");
@@ -68,7 +64,6 @@ public abstract class BaseNavDrawerActivity extends AppCompatActivity {
                 user = new UserSerializer().deserializeModel(userJSON);
             }
         }
-        //}
     }
 
     protected void loadNavHeader() {
@@ -210,6 +205,34 @@ public abstract class BaseNavDrawerActivity extends AppCompatActivity {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawers();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        if (user != null) {
+            MenuInflater inflater = getMenuInflater();
+
+            inflater.inflate(R.menu.main_menu, menu);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.menu_logout) {
+            user = null;
+            Intent intent = new Intent(getApplicationContext(), MedicineActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.putExtra("USER", new UserSerializer().serializeModel(user));
+            startActivity(intent);
+        }
+
+
+        return super.onOptionsItemSelected(item);
     }
 
 
