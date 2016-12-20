@@ -18,4 +18,5 @@ public class Medicine {
     public String state;
     public String dosing;
     public String contradictions;
+    public String imagePath;
 }

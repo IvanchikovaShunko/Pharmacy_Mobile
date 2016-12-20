@@ -21,7 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class PharmacyRESTService {
-    public static final String API_URL = "https://pharmacyrestservice.herokuapp.com/";
+    public static final String API_URL = "http://pharmacyrestservice.herokuapp.com/";
     private static Retrofit retrofit;
 
     protected static Retrofit getRetrofit() {

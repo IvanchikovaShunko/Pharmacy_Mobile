@@ -36,16 +36,23 @@ public class MedicineActivity extends BaseNavDrawerActivity {
     protected void initActivityGUI() {
         listView = (ListView) findViewById(R.id.list_view_medicine);
 
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.setMessage("Loading...");
+
         MedicineService medicineService = PharmacyRESTService.medicineService();
+        progressDialog.show();
         medicineService.medicineList().enqueue(new Callback<List<Medicine>>() {
             @Override
             public void onResponse(Call<List<Medicine>> call, Response<List<Medicine>> response) {
                 medicineList = response.body();
                 setAdapter();
+                progressDialog.hide();
             }
 
             @Override
             public void onFailure(Call<List<Medicine>> call, Throwable t) {
+                progressDialog.hide();
                 Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -65,7 +72,7 @@ public class MedicineActivity extends BaseNavDrawerActivity {
     }
 
     public void setAdapter() {
-        adapter = new MedicineAdapter(this, medicineList);
+        adapter = new MedicineAdapter(this, medicineList, user);
         listView.setAdapter(adapter);
     }
 

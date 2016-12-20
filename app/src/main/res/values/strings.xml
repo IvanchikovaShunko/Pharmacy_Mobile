@@ -46,10 +46,12 @@
     <string name="unable_to_login">Unable to login</string>
     <string name="add_medicine">Add medicine</string>
     <string name="gender">Gender</string>
-    <string name="delete_medicine">Delete meedicine</string>
+    <string name="delete_medicine">Delete medicine</string>
 
     <string-array name="gender_array">
         <item>Male</item>
         <item>Female</item>
     </string-array>
+
+
 </resources>

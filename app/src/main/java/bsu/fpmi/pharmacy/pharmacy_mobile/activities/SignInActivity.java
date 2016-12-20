@@ -145,6 +145,7 @@ public class SignInActivity extends AppCompatActivity {
                     if (user == null) {
                         Toast.makeText(getApplicationContext(), "Incorrect username or password", Toast.LENGTH_SHORT).show();
                         loginEditText.requestFocus();
+                        progressDialog.hide();
                     } else {
                         Intent intent = new Intent(getApplicationContext(), MedicineActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
@@ -155,6 +156,7 @@ public class SignInActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<User> call, Throwable t) {
+                    progressDialog.hide();
                     Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
@@ -165,7 +167,7 @@ public class SignInActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(final Void success) {
             mAuthTask = null;
-            progressDialog.hide();
+//            progressDialog.hide();
         }
 
         @Override

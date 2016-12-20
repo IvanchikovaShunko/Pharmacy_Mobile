@@ -1,14 +1,17 @@
 package bsu.fpmi.pharmacy.pharmacy_mobile.adapters;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
 
+import bsu.fpmi.pharmacy.pharmacy_mobile.PharmacyApp;
 import bsu.fpmi.pharmacy.pharmacy_mobile.R;
 import bsu.fpmi.pharmacy.pharmacy_mobile.api.entity.Medicine;
 
@@ -53,6 +56,10 @@ public class InstructionsAdapter extends BaseAdapter {
         if (medicine.aboutMedicine.length() > 80)
             text = medicine.aboutMedicine.substring(0, 80) + " ...";
         ((TextView) cView.findViewById(R.id.medicine_state)).setText(text);
+
+        ImageView imageView = (ImageView) cView.findViewById(R.id.photo_view);
+        if (!TextUtils.isEmpty(medicine.imagePath))
+            PharmacyApp.PICASSO.load(medicine.imagePath).into(imageView);
 
         return cView;
     }

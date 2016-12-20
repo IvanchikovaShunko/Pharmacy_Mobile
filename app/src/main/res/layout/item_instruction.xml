@@ -13,7 +13,7 @@
         android:layout_toRightOf="@+id/photo_view"
         android:layout_marginLeft="8dp"
         android:gravity="center_vertical"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="40dp"
         android:id="@+id/linear_layout">
 
         <android.support.v7.widget.AppCompatTextView
@@ -66,6 +66,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:foregroundGravity="center_vertical"
-        android:layout_marginLeft="8dp" />
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp" />
 
 </RelativeLayout>

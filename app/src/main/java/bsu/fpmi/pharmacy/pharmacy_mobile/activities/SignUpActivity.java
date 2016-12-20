@@ -25,7 +25,7 @@ import retrofit2.Response;
 public class SignUpActivity extends AppCompatActivity {
     private EditText fullNameEditText, loginEditText, emailEditText, passwordEditText,
             confPasswordEditText, ageEditText, addressEditText, phoneEditText, aboutEditText, genderEditText;
-//    private Spinner spinner;
+    //    private Spinner spinner;
     private FloatingActionButton floatingActionButton;
     private ProgressDialog progressDialog;
 
@@ -70,13 +70,6 @@ public class SignUpActivity extends AppCompatActivity {
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setMessage("Signing up...");
 
-//        spinner = (Spinner) findViewById(R.id.spinnerGender);
-//        final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-//                R.array.gender_array, android.R.layout.simple_spinner_item);
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        final String gender = null;
-//        spinner.setAdapter(adapter);
-
         usernameWrapper = (TextInputLayout) findViewById(R.id.usernameWrapper);
         usernameWrapper.setHint("Username");
         emailWrapper = (TextInputLayout) findViewById(R.id.emailWrapper);
@@ -109,8 +102,8 @@ public class SignUpActivity extends AppCompatActivity {
             user.userDetail = new UserDetail();
             user.userDetail.gender = genderEditText.getText().toString();
             user.userDetail.about = aboutEditText.getText().toString();
-            if (ageEditText.getText().toString() != null)
-            user.userDetail.age = Integer.parseInt(ageEditText.getText().toString());
+            if (!TextUtils.isEmpty(ageEditText.getText().toString()))
+                user.userDetail.age = Integer.parseInt(ageEditText.getText().toString());
             user.userDetail.email = emailEditText.getText().toString();
             user.userDetail.homeAddress = addressEditText.getText().toString();
             user.userDetail.name = fullNameEditText.getText().toString();
@@ -120,6 +113,8 @@ public class SignUpActivity extends AppCompatActivity {
             user.role = "USER";
             user.username = loginEditText.getText().toString();
             new SignUpAsyncTask(user).execute();
+            progressDialog.show();
+
 
         }
     }
@@ -128,8 +123,8 @@ public class SignUpActivity extends AppCompatActivity {
         boolean res = pass.equals(confPass);
         if (!res) {
             Toast.makeText(getApplicationContext(), "Password doesn't match", Toast.LENGTH_SHORT).show();
-            confPasswordEditText.setError("");
-            passwordEditText.setError("");
+            confPasswordEditText.setError("doesn't match");
+            passwordEditText.setError("doesn't match");
             confPasswordEditText.requestFocus();
         }
 
@@ -214,38 +209,40 @@ public class SignUpActivity extends AppCompatActivity {
             userService.userAdd(user.username, user.password, user.userDetail.name, user.userDetail.age,
                     user.userDetail.gender, user.userDetail.about, user.userDetail.homeAddress,
                     user.userDetail.email, user.userDetail.telephone).enqueue(new Callback<User>() {
-                @Override
-                public void onResponse(Call<User> call, Response<User> response) {
-                    User user = response.body();
-                    if (user == null) {
-                        Toast.makeText(getApplicationContext(), "Can't sign up", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Intent intent = new Intent(getApplicationContext(), MedicineActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                        intent.putExtra("USER", new UserSerializer().serializeModel(user));
-                        startActivity(intent);
-                    }
-                }
+                  @Override
+                  public void onResponse(Call<User> call, Response<User> response) {
+                      User user = response.body();
+                      if (user == null) {
+                          Toast.makeText(getApplicationContext(), "Can't sign up", Toast.LENGTH_SHORT).show();
+                      } else {
+                          Intent intent = new Intent(getApplicationContext(), MedicineActivity.class);
+                          intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                          intent.putExtra("USER", new UserSerializer().serializeModel(user));
+                          startActivity(intent);
+                      }
+                      progressDialog.hide();
+                  }
 
-                    @Override
-                    public void onFailure (Call < User > call, Throwable t){
-                        Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                }
+                  @Override
+                  public void onFailure(Call<User> call, Throwable t) {
+                      progressDialog.hide();
+                      Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                  }
+              }
 
-                );
+            );
 
-                return null;
-            }
+            return null;
+        }
 
-            @Override
-            protected void onPostExecute ( final Void success){
-                progressDialog.hide();
-            }
+        @Override
+        protected void onPostExecute(final Void success) {
+            progressDialog.hide();
+        }
 
-            @Override
-            protected void onCancelled () {
-                progressDialog.hide();
-            }
+        @Override
+        protected void onCancelled() {
+            progressDialog.hide();
         }
     }
+}
