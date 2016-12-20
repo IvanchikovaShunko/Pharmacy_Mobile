@@ -11,6 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import bsu.fpmi.pharmacy.pharmacy_mobile.api.service.BasketService;
 import bsu.fpmi.pharmacy.pharmacy_mobile.api.service.MedicineService;
 import bsu.fpmi.pharmacy.pharmacy_mobile.api.service.UserService;
 import retrofit2.Retrofit;
@@ -63,6 +64,9 @@ public class PharmacyRESTService {
 
     public static UserService userService() {
         return getRetrofit().create(UserService.class);
+    }
+    public static BasketService basketService() {
+        return getRetrofit().create(BasketService.class);
     }
 
 }

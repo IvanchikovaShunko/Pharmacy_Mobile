@@ -14,18 +14,18 @@ import retrofit2.http.Query;
 public interface BasketService {
     @GET("/user/{userId}/basket")
     Call<Basket> userBasket(
-            @Path("id") int id
+            @Path("userId") int id
     );
 
     @POST("/user/{userId}/basket/add")
     Call<Basket> userAddToBasket(
-            @Path("id") int id,
+            @Path("userId") int id,
             @Query("medicine_id") int medicineId
     );
 
     @POST("/user/{userId}/basket/remove")
     Call<Basket> userRemoveFromBasket(
-            @Path("id") int id,
+            @Path("userId") int id,
             @Query("medicine_id") int medicineId
     );
 }

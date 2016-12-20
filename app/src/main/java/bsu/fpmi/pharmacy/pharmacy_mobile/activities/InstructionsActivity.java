@@ -1,5 +1,6 @@
 package bsu.fpmi.pharmacy.pharmacy_mobile.activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,22 +27,32 @@ import retrofit2.Response;
 public class InstructionsActivity extends BaseNavDrawerActivity {
     private ListView listView;
     private InstructionsAdapter adapter;
+    private ProgressDialog progressDialog;
+
 
     List<Medicine> medicineList = new ArrayList<>();
 
     @Override
     protected void initActivityGUI() {;
         listView = (ListView) findViewById(R.id.list_view_instructions);
+
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.setMessage("Loading...");
+
         MedicineService medicineService = PharmacyRESTService.medicineService();
+        progressDialog.show();
         medicineService.medicineList().enqueue(new Callback<List<Medicine>>() {
             @Override
             public void onResponse(Call<List<Medicine>> call, Response<List<Medicine>> response) {
+                progressDialog.hide();
                 medicineList = response.body();
                 setAdapter();
             }
 
             @Override
             public void onFailure(Call<List<Medicine>> call, Throwable t) {
+                progressDialog.hide();
                 Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

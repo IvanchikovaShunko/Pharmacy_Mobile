@@ -47,10 +47,10 @@ public abstract class BaseNavDrawerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(getContentView());
         handler = new Handler();
+        initUser();
         initDrawer();
         setUpNavigationView();
         initActivityGUI();
-        initUser();
         loadNavHeader();
 
 
