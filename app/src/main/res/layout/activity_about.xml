@@ -35,7 +35,8 @@
                     android:background="?attr/colorPrimary"
                     app:layout_scrollFlags="scroll|enterAlways|snap"
                     app:title="@string/drawer_item_about"
-                    app:titleTextColor="@android:color/white" />
+                    app:titleTextColor="@android:color/white"
+                    android:theme="@style/ToolbarTheme"/>
 
 
             </android.support.design.widget.AppBarLayout>

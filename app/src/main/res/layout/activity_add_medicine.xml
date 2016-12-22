@@ -5,7 +5,8 @@
     android:id="@+id/activity_add_medicine"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="bsu.fpmi.pharmacy.pharmacy_mobile.activities.AddMedicineActivity">
+    tools:context="bsu.fpmi.pharmacy.pharmacy_mobile.activities.AddMedicineActivity"
+    android:background="@android:color/white">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -13,7 +14,7 @@
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
+        android:theme="@style/ToolbarTheme"
         app:title="Add medicine"
         app:titleTextColor="@android:color/white" />
 
@@ -44,7 +45,8 @@
                     android:layout_weight="1"
                     android:gravity="center_horizontal"
                     android:text="Fill the fields to add medicine"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:layout_marginBottom="8dp" />
 
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/nameWrapper"

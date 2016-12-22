@@ -35,6 +35,7 @@ public class MedicineActivity extends BaseNavDrawerActivity {
     @Override
     protected void initActivityGUI() {
         listView = (ListView) findViewById(R.id.list_view_medicine);
+        listView.setDividerHeight(0);
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);

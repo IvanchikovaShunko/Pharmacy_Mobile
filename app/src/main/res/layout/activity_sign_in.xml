@@ -5,22 +5,35 @@
     android:id="@+id/activity_sign_in"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="bsu.fpmi.pharmacy.pharmacy_mobile.activities.SignInActivity">
+    tools:context="bsu.fpmi.pharmacy.pharmacy_mobile.activities.SignInActivity"
+    android:background="@android:color/white">
+
+    <ImageView
+        android:layout_width="match_parent"
+        app:srcCompat="@drawable/tabl2"
+        android:id="@+id/imageView3"
+        android:scaleType="centerCrop"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="false"
+        android:layout_height="160dp"
+        android:rotation="180"
+        android:layout_alignParentRight="false" />
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
         <LinearLayout
             android:id="@+id/icon_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="32dp">
+            android:layout_marginTop="32dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp">
 
             <ImageView
                 android:id="@+id/imageView"
@@ -49,7 +62,9 @@
             android:id="@+id/loginWrapper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="36dp">
+            android:layout_marginTop="36dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp">
 
             <EditText
                 android:id="@+id/loginEditText"
@@ -81,7 +96,9 @@
                 android:drawablePadding="8dp"
                 android:ems="10"
                 android:hint="Password"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp" />
         </android.support.design.widget.TextInputLayout>
 
 
@@ -90,8 +107,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/passwordEditText"
-            android:layout_marginTop="32dp"
-            android:orientation="horizontal">
+            android:layout_marginTop="40dp"
+            android:orientation="horizontal"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp">
 
             <Button
                 android:id="@+id/signInButton"
@@ -100,7 +119,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/passwordEditText"
                 android:layout_weight="1"
-                android:text="Sign in" />
+                android:text="Sign in"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/sign_in_button" />
 
             <Button
                 android:id="@+id/signUpButton"
@@ -108,7 +129,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Sign Up" />
+                android:text="Sign Up"
+                android:background="@drawable/sign_in_button" />
         </LinearLayout>
 
     </LinearLayout>

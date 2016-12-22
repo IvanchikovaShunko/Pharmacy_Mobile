@@ -123,6 +123,7 @@ public abstract class BaseNavDrawerActivity extends AppCompatActivity {
                 return false;
             }
         });
+        navigationView.bringToFront();
     }
 
 

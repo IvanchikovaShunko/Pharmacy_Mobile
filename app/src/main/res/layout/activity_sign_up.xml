@@ -9,7 +9,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="bsu.fpmi.pharmacy.pharmacy_mobile.activities.SignUpActivity">
+    tools:context="bsu.fpmi.pharmacy.pharmacy_mobile.activities.SignUpActivity"
+    android:background="@android:color/white">
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -20,7 +21,13 @@
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true">
+        android:layout_alignParentTop="true"
+        android:scrollIndicators="none"
+        android:scrollbarSize="0dp"
+        android:scrollbars="none"
+        android:scrollbarFadeDuration="0"
+        android:scrollbarDefaultDelayBeforeFade="0"
+        android:fadingEdge="none">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,10 +38,10 @@
                 android:id="@+id/icon_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="32dp"
-                android:layout_marginStart="32dp"
                 android:layout_marginTop="32dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp">
 
                 <ImageView
                     android:id="@+id/imageView"
@@ -68,7 +75,8 @@
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:text="Fill the fields to sign up"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:layout_marginBottom="16dp" />
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/usernameWrapper"

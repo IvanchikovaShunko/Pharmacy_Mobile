@@ -15,7 +15,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:context=".ui.activity.MoviesActivity">
+        tools:context=".ui.activity.MoviesActivity"
+        android:background="@android:color/white">
 
         <RelativeLayout
             android:layout_width="fill_parent"
@@ -35,7 +36,8 @@
                     android:background="?attr/colorPrimary"
                     app:layout_scrollFlags="scroll|enterAlways|snap"
                     app:title="@string/drawer_item_medicine"
-                    app:titleTextColor="@android:color/white" />
+                    app:titleTextColor="@android:color/white"
+                    android:theme="@style/ToolbarTheme" />
 
 
             </android.support.design.widget.AppBarLayout>
@@ -43,7 +45,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/appbar"
-                android:id="@+id/list_view_medicine" />
+                android:id="@+id/list_view_medicine"
+                />
 
         </RelativeLayout>
 
