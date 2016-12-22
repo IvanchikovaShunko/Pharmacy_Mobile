@@ -5,7 +5,7 @@
     android:id="@+id/activity_add_medicine"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="bsu.fpmi.pharmacy.pharmacy_mobile.activities.AddMedicineActivity"
+    tools:cartActivity="bsu.fpmi.pharmacy.pharmacy_mobile.activities.AddMedicineActivity"
     android:background="@android:color/white">
 
     <android.support.v7.widget.Toolbar

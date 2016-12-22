@@ -5,7 +5,7 @@
     android:id="@+id/activity_sign_in"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="bsu.fpmi.pharmacy.pharmacy_mobile.activities.SignInActivity"
+    tools:cartActivity="bsu.fpmi.pharmacy.pharmacy_mobile.activities.SignInActivity"
     android:background="@android:color/white">
 
     <ImageView

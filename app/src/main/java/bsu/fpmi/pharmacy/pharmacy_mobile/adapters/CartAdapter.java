@@ -14,6 +14,7 @@ import java.util.List;
 
 import bsu.fpmi.pharmacy.pharmacy_mobile.PharmacyApp;
 import bsu.fpmi.pharmacy.pharmacy_mobile.R;
+import bsu.fpmi.pharmacy.pharmacy_mobile.activities.CartActivity;
 import bsu.fpmi.pharmacy.pharmacy_mobile.api.PharmacyRESTService;
 import bsu.fpmi.pharmacy.pharmacy_mobile.api.entity.Basket;
 import bsu.fpmi.pharmacy.pharmacy_mobile.api.entity.Medicine;
@@ -28,18 +29,18 @@ import retrofit2.Response;
  */
 
 public class CartAdapter extends BaseAdapter {
-    Context context;
+    CartActivity cartActivity;
     LayoutInflater lInflater;
     User user;
 
 
     List<Medicine> cartMedicines;
 
-    public CartAdapter(Context context, List<Medicine> cartMedicines, User user) {
-        this.context = context;
+    public CartAdapter(CartActivity cartActivity, List<Medicine> cartMedicines, User user) {
+        this.cartActivity = cartActivity;
         this.cartMedicines = cartMedicines;
         this.user = user;
-        lInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        lInflater = (LayoutInflater) cartActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
@@ -76,7 +77,7 @@ public class CartAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 removeFromCart(medicine.idMedicine);
-                Toast.makeText(context, "Medicine removed from cart", Toast.LENGTH_SHORT).show();
+                Toast.makeText(cartActivity, "Medicine removed from cart", Toast.LENGTH_SHORT).show();
 
 
             }
@@ -89,12 +90,15 @@ public class CartAdapter extends BaseAdapter {
         basketService.userRemoveFromBasket(user.id, medicineId).enqueue(new Callback<Basket>() {
             @Override
             public void onResponse(Call<Basket> call, Response<Basket> response) {
-                Toast.makeText(context, "Medicine removed from cart", Toast.LENGTH_SHORT).show();
+                if (response.body() != null)
+                cartActivity.setCartMedicines(response.body().medicines);
+                cartActivity.setAdapter();
+                Toast.makeText(cartActivity, "Medicine removed from cart", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFailure(Call<Basket> call, Throwable t) {
-                Toast.makeText(context, "Error while removing", Toast.LENGTH_SHORT).show();
+                Toast.makeText(cartActivity, "Error while removing", Toast.LENGTH_SHORT).show();
             }
         });
 

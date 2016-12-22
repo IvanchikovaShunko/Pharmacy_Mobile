@@ -61,10 +61,19 @@ public class CartActivity extends BaseNavDrawerActivity {
 
     }
 
-    private void setAdapter() {
+    public void setAdapter() {
         cartAdapter = new CartAdapter(this, cartMedicines, user);
         listView.setAdapter(cartAdapter);
     }
+
+    public List<Medicine> getCartMedicines() {
+        return cartMedicines;
+    }
+
+    public void setCartMedicines(List<Medicine> cartMedicines) {
+        this.cartMedicines = cartMedicines;
+    }
+
     @Override
     protected int getContentView() {
         return R.layout.activity_cart;
