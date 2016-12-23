@@ -13,6 +13,7 @@ import java.util.Date;
 
 import bsu.fpmi.pharmacy.pharmacy_mobile.api.service.BasketService;
 import bsu.fpmi.pharmacy.pharmacy_mobile.api.service.MedicineService;
+import bsu.fpmi.pharmacy.pharmacy_mobile.api.service.SubscriptionService;
 import bsu.fpmi.pharmacy.pharmacy_mobile.api.service.UserService;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -67,6 +68,10 @@ public class PharmacyRESTService {
     }
     public static BasketService basketService() {
         return getRetrofit().create(BasketService.class);
+    }
+
+    public static SubscriptionService subscriptionService() {
+        return getRetrofit().create(SubscriptionService.class);
     }
 
 }

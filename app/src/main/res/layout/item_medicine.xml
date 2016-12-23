@@ -32,7 +32,9 @@
                 app:srcCompat="@drawable/ic_placeholder"
                 android:layout_margin="8dp"
                 android:id="@+id/photo_view"
-                android:layout_height="72dp" />
+                android:layout_height="72dp"
+                android:scaleType="centerCrop"
+                android:padding="4dp" />
 
             <LinearLayout
                 android:orientation="vertical"

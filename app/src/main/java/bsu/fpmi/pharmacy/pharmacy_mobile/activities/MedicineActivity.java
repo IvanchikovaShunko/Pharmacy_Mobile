@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -36,11 +37,14 @@ public class MedicineActivity extends BaseNavDrawerActivity {
 
     List<Medicine> medicineList = new ArrayList<>();
     private SwipeRefreshLayout mSwipeLayout;
+    private RelativeLayout emptyView;
 
     @Override
     protected void initActivityGUI() {
         listView = (ListView) findViewById(R.id.list_view_medicine);
         listView.setDividerHeight(0);
+        emptyView = (RelativeLayout) findViewById(R.id.empty_layout);
+        emptyView.setVisibility(View.GONE);
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -92,6 +96,8 @@ public class MedicineActivity extends BaseNavDrawerActivity {
 
     public void setAdapter() {
         adapter = new MedicineAdapter(this, medicineList, user);
+        if (medicineList.size() == 0)
+            emptyView.setVisibility(View.VISIBLE);
         listView.setAdapter(adapter);
     }
 

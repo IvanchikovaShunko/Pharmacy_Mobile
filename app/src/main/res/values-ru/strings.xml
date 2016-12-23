@@ -93,6 +93,8 @@
     <string name="error_removing">Ошибка во время удаления</string>
     <string name="not_logged_in">Войдите в приложение</string>
     <string name="medicine_added_cart">Лекарство добавлено в корзину</string>
+    <string name="enable_clear_basket">Невозможно очистить корзину</string>
+
 
 
     <string-array name="gender_array">
@@ -102,6 +104,17 @@
     <string name="medicine_in_cart">Лекарство уже есть в корзине</string>
     <string name="signing_in">Вход…</string>
     <string name="personal_information">Личная информация</string>
+    <string name="subscribed">Подписка оформлена</string>
+    <string name="unsubscribed">Вы успешно отписались от лекарства</string>
+    <string name="order">Оформление заказа</string>
+    <string name="confirmed">Заказ оформлен. Спасибо за покупку!</string>
+    <string name="your_order">Ваш заказ:</string>
+    <string name="confirm_order">Хотите оформить заказ?</string>
+    <string name="total">Итого:</string>
+    <string name="empty_medicine">Список лекарств пуст</string>
+    <string name="empty_instructions">Спискок инструкций пуст</string>
+    <string name="empty_cart">Корзина пуста</string>
+    <string name="empty_subs">Нет подписок</string>
 
 
 </resources>

@@ -19,6 +19,7 @@ import bsu.fpmi.pharmacy.pharmacy_mobile.api.entity.Basket;
 import bsu.fpmi.pharmacy.pharmacy_mobile.api.entity.Medicine;
 import bsu.fpmi.pharmacy.pharmacy_mobile.api.entity.User;
 import bsu.fpmi.pharmacy.pharmacy_mobile.api.service.BasketService;
+import bsu.fpmi.pharmacy.pharmacy_mobile.api.service.SubscriptionService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -76,11 +77,36 @@ public class MedicineAdapter extends BaseAdapter {
         addToCartImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    addMedicineToCart(medicine.idMedicine);
+                addMedicineToCart(medicine.idMedicine);
+            }
+        });
+
+        subscribeImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                subscribe(medicine.idMedicine);
             }
         });
 
         return cView;
+    }
+
+    private void subscribe(int idMedicine) {
+        SubscriptionService subscriptionService = PharmacyRESTService.subscriptionService();
+        subscriptionService.subscribe(user.id, idMedicine, "30").enqueue(new Callback<Integer>() {
+            @Override
+            public void onResponse(Call<Integer> call, Response<Integer> response) {
+                if (response != null    )
+                    if (response.body() == 200) {
+                        Toast.makeText(context, R.string.subscribed, Toast.LENGTH_SHORT).show();
+                    }
+            }
+
+            @Override
+            public void onFailure(Call<Integer> call, Throwable t) {
+                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void addMedicineToCart(int medicineId) {

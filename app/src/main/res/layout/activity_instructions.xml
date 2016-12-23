@@ -15,7 +15,25 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:cartActivity=".ui.activity.MoviesActivity">
+        tools:cartActivity=".ui.activity.MoviesActivity"
+        android:background="@android:color/white">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/empty_layout"
+            android:visibility="gone">
+
+            <TextView
+                android:text="@string/empty_instructions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/empty_text"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:textStyle="normal|italic"
+                android:textSize="22sp" />
+        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="fill_parent"

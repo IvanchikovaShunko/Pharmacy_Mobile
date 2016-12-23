@@ -12,4 +12,5 @@
 
     <color name="primary_text">#212121</color>
     <color name="secondary_text">#929292</color>
+    <color name="bgr">#ffeeee</color>
 </resources>

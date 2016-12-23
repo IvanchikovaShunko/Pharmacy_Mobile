@@ -114,19 +114,19 @@
 
             <Button
                 android:id="@+id/signInButton"
-                style="@style/Widget.AppCompat.Button"
-                android:layout_width="wrap_content"
+                style="@style/RobotoButtonStyle"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/passwordEditText"
                 android:layout_weight="1"
                 android:text="@string/action_sign_in"
                 android:layout_marginRight="8dp"
-                android:background="@drawable/sign_in_button" />
+                android:background="@drawable/sign_in_button"
+                android:layout_width="136dp" />
 
             <Button
                 android:id="@+id/signUpButton"
-                style="@style/Widget.AppCompat.Button"
-                android:layout_width="wrap_content"
+                style="@style/RobotoButtonStyle"
+                android:layout_width="136dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/sign_up"

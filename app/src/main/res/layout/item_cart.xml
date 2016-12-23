@@ -42,10 +42,14 @@
         android:gravity="center_vertical"
         android:layout_marginTop="8dp">
 
-        <Spinner
+        <TextView
             android:layout_height="wrap_content"
-            android:id="@+id/spinner"
-            android:layout_width="64dp" />
+            android:id="@+id/price_textView"
+            tools:text="5$"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/primary_text"
+            android:textStyle="normal|bold|italic" />
 
         <ImageView
             app:srcCompat="@drawable/ic_clear_black_24dp"

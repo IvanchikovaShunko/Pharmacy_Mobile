@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -32,10 +33,15 @@ public class InstructionsActivity extends BaseNavDrawerActivity {
 
     List<Medicine> medicineList = new ArrayList<>();
     private SwipeRefreshLayout mSwipeLayout;
+    private RelativeLayout emptyView;
 
     @Override
     protected void initActivityGUI() {;
         listView = (ListView) findViewById(R.id.list_view_instructions);
+        listView.setDividerHeight(0);
+
+        emptyView = (RelativeLayout) findViewById(R.id.empty_layout);
+        emptyView.setVisibility(View.GONE);
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -97,6 +103,8 @@ public class InstructionsActivity extends BaseNavDrawerActivity {
 
     private void setAdapter() {
         adapter = new InstructionsAdapter(this, medicineList);
+        if (medicineList.size() == 0)
+            emptyView.setVisibility(View.VISIBLE);
         listView.setAdapter(adapter);
     }
 

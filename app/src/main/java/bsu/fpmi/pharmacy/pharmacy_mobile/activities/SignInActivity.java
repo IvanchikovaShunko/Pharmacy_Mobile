@@ -75,7 +75,7 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     private boolean isPasswordValid(String password) {
-        return password.length() > 4;
+        return password.length() >= 4;
     }
 
     private void attemptLogin() {

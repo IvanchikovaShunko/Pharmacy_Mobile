@@ -15,8 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:background="@drawable/tabl2"
-        android:layout_marginTop="16dp" />
+        android:background="@drawable/tabl2" />
 
     <LinearLayout
         android:layout_width="match_parent"

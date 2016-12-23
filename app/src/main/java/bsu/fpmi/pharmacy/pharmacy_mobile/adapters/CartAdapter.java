@@ -33,7 +33,6 @@ public class CartAdapter extends BaseAdapter {
     LayoutInflater lInflater;
     User user;
 
-
     List<Medicine> cartMedicines;
 
     public CartAdapter(CartActivity cartActivity, List<Medicine> cartMedicines, User user) {
@@ -67,6 +66,7 @@ public class CartAdapter extends BaseAdapter {
         final Medicine medicine = (Medicine) getItem(i);
 
         ((TextView) cView.findViewById(R.id.medicine_name)).setText(medicine.nameMedicine);
+        ((TextView) cView.findViewById(R.id.price_textView)).setText(Double.toString(medicine.cost) + " $");
 
         ImageView imageView = (ImageView) cView.findViewById(R.id.photo_view);
         if (!TextUtils.isEmpty(medicine.imagePath))

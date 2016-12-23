@@ -28,4 +28,9 @@ public interface BasketService {
             @Path("userId") int id,
             @Query("medicine_id") int medicineId
     );
+
+    @POST("/user/{userId}/basket/clear")
+    Call<Basket> userClearBasket(
+            @Path("userId") int id
+    );
 }

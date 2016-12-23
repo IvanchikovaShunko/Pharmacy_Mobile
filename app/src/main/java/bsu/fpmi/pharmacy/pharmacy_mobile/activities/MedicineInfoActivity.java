@@ -5,11 +5,13 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
+import bsu.fpmi.pharmacy.pharmacy_mobile.PharmacyApp;
 import bsu.fpmi.pharmacy.pharmacy_mobile.R;
 import bsu.fpmi.pharmacy.pharmacy_mobile.api.entity.Medicine;
 import bsu.fpmi.pharmacy.pharmacy_mobile.api.entity.User;
@@ -20,9 +22,9 @@ public class MedicineInfoActivity extends AppCompatActivity {
     public static final String DATE_FORMAT = "MM/dd/yyyy";
 
     private Toolbar toolbar;
-    private TextView nameTextView, consistTextView, costTextView, dateTextView, contradictionsTextView,
-            quantityTextView, stateTextView, gramTextView, dosingTextView, aboutTextView;
-
+    private TextView nameTextView, consistTextView, costTextView, contradictionsTextView,
+            stateTextView, gramTextView, dosingTextView, aboutTextView;
+    private ImageView imageView;
     private Medicine medicine;
     private User user;
 
@@ -47,13 +49,12 @@ public class MedicineInfoActivity extends AppCompatActivity {
         nameTextView = (TextView) findViewById(R.id.nameTextView);
         consistTextView = (TextView) findViewById(R.id.consistTextView);
         costTextView = (TextView) findViewById(R.id.costTextView);
-        dateTextView = (TextView) findViewById(R.id.dateTextView);
         contradictionsTextView = (TextView) findViewById(R.id.contradictionsTextView);
         aboutTextView = (TextView) findViewById(R.id.aboutTextView);
         dosingTextView = (TextView) findViewById(R.id.dosingTextView);
         stateTextView = (TextView) findViewById(R.id.stateTextView);
         gramTextView = (TextView) findViewById(R.id.gramTextView);
-        quantityTextView = (TextView) findViewById(R.id.quantityTextView);
+        imageView = (ImageView) findViewById(R.id.image_medicine);
 
         DateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
 
@@ -67,13 +68,14 @@ public class MedicineInfoActivity extends AppCompatActivity {
             nameTextView.setText(medicine.nameMedicine);
             consistTextView.setText(medicine.consist);
             costTextView.setText(String.valueOf(medicine.cost));
-            dateTextView.setText(date);
             contradictionsTextView.setText(medicine.contradictions);
             aboutTextView.setText(medicine.aboutMedicine);
             dosingTextView.setText(medicine.dosing);
             stateTextView.setText(medicine.state);
             gramTextView.setText(String.valueOf(medicine.gramInOne));
-            quantityTextView.setText(String.valueOf(medicine.quantity));
+            if (!TextUtils.isEmpty(medicine.imagePath)){
+                PharmacyApp.PICASSO.load(medicine.imagePath).into(imageView);
+            }
         }
     }
 

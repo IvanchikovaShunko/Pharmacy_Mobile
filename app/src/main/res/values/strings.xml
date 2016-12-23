@@ -92,13 +92,25 @@
     <string name="not_logged_in">You\'re not logged in</string>
     <string name="medicine_added_cart">Medicine added to cart</string>
     <string name="medicine_in_cart">Medicine already in the cart</string>
-    <string name="signing_in">Signing in...</string>
+    <string name="signing_in">Signing in…</string>
     <string name="personal_information">Personal information</string>
+    <string name="enable_clear_basket">Enable to clear basket</string>
+    <string name="subscribed">Subscribed to medicine</string>
+    <string name="unsubscribed">You\'re successfully unsubscribed</string>
+    <string name="order">Confirm order</string>
+    <string name="confirmed">Order has been confirmed</string>
 
     <string-array name="gender_array">
         <item>Male</item>
         <item>Female</item>
     </string-array>
+    <string name="your_order">Your order:</string>
+    <string name="confirm_order">Confirm order?</string>
+    <string name="total">Total:</string>
+    <string name="empty_cart">Cart is empty</string>
+    <string name="empty_instructions">Instructions list is empty</string>
+    <string name="empty_medicine">Medicine list is empty</string>
+    <string name="empty_subs">No subscriptions</string>
 
 
 </resources>
