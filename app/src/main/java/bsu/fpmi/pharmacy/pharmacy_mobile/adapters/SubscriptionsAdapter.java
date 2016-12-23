@@ -90,22 +90,23 @@ public class SubscriptionsAdapter extends BaseAdapter {
         subscriptionService.unsubscribe(user.id, subId).enqueue(new Callback<Integer>() {
             @Override
             public void onResponse(Call<Integer> call, Response<Integer> response) {
-                if (response.body() == 200) {
-                    subscriptionService.userSubscriptions(user.id).enqueue(new Callback<List<Subscription>>() {
-                        @Override
-                        public void onResponse(Call<List<Subscription>> call, Response<List<Subscription>> response) {
-                            activity.setSubscriptionList(response.body());
-                            activity.setAdapter();
-                            Toast.makeText(activity, R.string.unsubscribed, Toast.LENGTH_SHORT).show();
-                        }
+                if (response != null)
+                    if (response.body() == 200) {
+                        subscriptionService.userSubscriptions(user.id).enqueue(new Callback<List<Subscription>>() {
+                            @Override
+                            public void onResponse(Call<List<Subscription>> call, Response<List<Subscription>> response) {
+                                activity.setSubscriptionList(response.body());
+                                activity.setAdapter();
+                                Toast.makeText(activity, R.string.unsubscribed, Toast.LENGTH_SHORT).show();
+                            }
 
-                        @Override
-                        public void onFailure(Call<List<Subscription>> call, Throwable t) {
-                            Toast.makeText(activity, t.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                            @Override
+                            public void onFailure(Call<List<Subscription>> call, Throwable t) {
+                                Toast.makeText(activity, t.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
 
-                }
+                    }
             }
 
             @Override

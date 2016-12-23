@@ -5,8 +5,4 @@
         android:id="@+id/menu_delete_medicine"
         android:title="@string/delete_medicine" />
 
-    <item
-        android:id="@+id/menu_logout"
-        android:title="@string/log_out" />
-
 </menu>
