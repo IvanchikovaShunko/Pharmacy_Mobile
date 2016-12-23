@@ -132,7 +132,8 @@ public class MedicineInfoActivity extends AppCompatActivity {
                             medicineService.medicineDelete(medicine.idMedicine).enqueue(new Callback<Integer>() {
                                 @Override
                                 public void onResponse(Call<Integer> call, Response<Integer> response) {
-                                    if (response.body().equals(200)) {
+                                    if (response.body() != null)
+                                        if (response.body().equals(200)) {
                                         Toast.makeText(getApplicationContext(), R.string.med_deleted, Toast.LENGTH_SHORT).show();
                                     }
                                 }

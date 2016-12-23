@@ -59,7 +59,8 @@ public class MedicineActivity extends BaseNavDrawerActivity {
                 medicineService.medicineList().enqueue(new Callback<List<Medicine>>() {
                     @Override
                     public void onResponse(Call<List<Medicine>> call, Response<List<Medicine>> response) {
-                        medicineList = response.body();
+                        if (response != null)
+                            medicineList = response.body();
                         setAdapter();
                         mSwipeLayout.setRefreshing(false);
                     }
@@ -131,6 +132,7 @@ public class MedicineActivity extends BaseNavDrawerActivity {
                                     medicineService.medicineDelete(medicineList.get(i).idMedicine).enqueue(new Callback<Integer>() {
                                         @Override
                                         public void onResponse(Call<Integer> call, Response<Integer> response) {
+                                            if (response.body() != null)
                                             if (response.body().equals(200)) {
                                                 medicineList.remove(i);
                                                 setAdapter();
