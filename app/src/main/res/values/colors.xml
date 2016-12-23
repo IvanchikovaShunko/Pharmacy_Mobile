@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#b71c1c</color>
     <color name="colorAccent">#f44336</color>
 
-    <color name="linkTextViewPressed">#ef9a9a</color>
+    <color name="linkTextViewPressed">#fbe9e7</color>
     <color name="linkTextViewNormal">#FFFFFF</color>
 
     <color name="groupTitle">#212121</color>

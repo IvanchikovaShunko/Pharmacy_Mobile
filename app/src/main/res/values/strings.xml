@@ -47,6 +47,11 @@
     <string name="add_medicine">Add medicine</string>
     <string name="gender">Gender</string>
     <string name="delete_medicine">Delete medicine</string>
+    <string name="deleting_medicine">Deleting medicine</string>
+    <string name="confirm_delete_medicine">Are you sure you want to delete medicine?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="med_deleted">Medicine was deleted</string>
 
     <string-array name="gender_array">
         <item>Male</item>

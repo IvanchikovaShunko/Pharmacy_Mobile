@@ -1,6 +1,7 @@
 package bsu.fpmi.pharmacy.pharmacy_mobile.activities;
 
 import android.app.ProgressDialog;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
@@ -27,6 +28,7 @@ public class CartActivity extends BaseNavDrawerActivity {
 
     Basket basket;
     List<Medicine> cartMedicines = new ArrayList<>();
+    private SwipeRefreshLayout mSwipeLayout;
 
 
     @Override
@@ -37,6 +39,15 @@ public class CartActivity extends BaseNavDrawerActivity {
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setMessage("Loading...");
         progressDialog.show();
+
+        mSwipeLayout = (SwipeRefreshLayout) findViewById(R.id.swiperefresh);
+        mSwipeLayout.setColorSchemeResources(R.color.colorPrimaryDark);
+        mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+            }
+        });
 
         BasketService basketService = PharmacyRESTService.basketService();
         basketService.userBasket(user.id).enqueue(new Callback<Basket>() {

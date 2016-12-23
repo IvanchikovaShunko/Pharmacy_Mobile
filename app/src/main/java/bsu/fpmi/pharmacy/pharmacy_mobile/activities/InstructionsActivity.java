@@ -2,6 +2,7 @@ package bsu.fpmi.pharmacy.pharmacy_mobile.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -29,8 +30,8 @@ public class InstructionsActivity extends BaseNavDrawerActivity {
     private InstructionsAdapter adapter;
     private ProgressDialog progressDialog;
 
-
     List<Medicine> medicineList = new ArrayList<>();
+    private SwipeRefreshLayout mSwipeLayout;
 
     @Override
     protected void initActivityGUI() {;
@@ -39,6 +40,29 @@ public class InstructionsActivity extends BaseNavDrawerActivity {
         progressDialog = new ProgressDialog(this);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setMessage("Loading...");
+
+        mSwipeLayout = (SwipeRefreshLayout) findViewById(R.id.swiperefresh);
+        mSwipeLayout.setColorSchemeResources(R.color.colorPrimaryDark);
+        mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                MedicineService medicineService = PharmacyRESTService.medicineService();
+                medicineService.medicineList().enqueue(new Callback<List<Medicine>>() {
+                    @Override
+                    public void onResponse(Call<List<Medicine>> call, Response<List<Medicine>> response) {
+                        mSwipeLayout.setRefreshing(false);
+                        medicineList = response.body();
+                        setAdapter();
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Medicine>> call, Throwable t) {
+                        mSwipeLayout.setRefreshing(false);
+                        Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
 
         MedicineService medicineService = PharmacyRESTService.medicineService();
         progressDialog.show();

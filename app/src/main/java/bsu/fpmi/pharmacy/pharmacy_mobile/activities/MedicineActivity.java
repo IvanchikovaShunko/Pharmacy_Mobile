@@ -1,8 +1,12 @@
 package bsu.fpmi.pharmacy.pharmacy_mobile.activities;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -31,6 +35,7 @@ public class MedicineActivity extends BaseNavDrawerActivity {
     private ProgressDialog progressDialog;
 
     List<Medicine> medicineList = new ArrayList<>();
+    private SwipeRefreshLayout mSwipeLayout;
 
     @Override
     protected void initActivityGUI() {
@@ -40,6 +45,29 @@ public class MedicineActivity extends BaseNavDrawerActivity {
         progressDialog = new ProgressDialog(this);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setMessage("Loading...");
+
+        mSwipeLayout = (SwipeRefreshLayout) findViewById(R.id.swiperefresh);
+        mSwipeLayout.setColorSchemeResources(R.color.colorPrimaryDark);
+        mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                MedicineService medicineService = PharmacyRESTService.medicineService();
+                medicineService.medicineList().enqueue(new Callback<List<Medicine>>() {
+                    @Override
+                    public void onResponse(Call<List<Medicine>> call, Response<List<Medicine>> response) {
+                        medicineList = response.body();
+                        setAdapter();
+                        mSwipeLayout.setRefreshing(false);
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Medicine>> call, Throwable t) {
+                        mSwipeLayout.setRefreshing(false);
+                        Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
 
         MedicineService medicineService = PharmacyRESTService.medicineService();
         progressDialog.show();
@@ -58,6 +86,20 @@ public class MedicineActivity extends BaseNavDrawerActivity {
             }
         });
 
+
+        setListOnClickListeners();
+    }
+
+    public void setAdapter() {
+        adapter = new MedicineAdapter(this, medicineList, user);
+        listView.setAdapter(adapter);
+    }
+
+    public void setMedicineList(List<Medicine> medicineList) {
+        this.medicineList = medicineList;
+    }
+
+    private void setListOnClickListeners() {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -69,16 +111,36 @@ public class MedicineActivity extends BaseNavDrawerActivity {
                 startActivity(intent);
             }
         });
+        if (user != null)
+            listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                @Override
+                public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int i, long l) {
+                    new AlertDialog.Builder(MedicineActivity.this)
+                            .setTitle(R.string.deleting_medicine)
+                            .setMessage(R.string.confirm_delete_medicine)
+                            .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    MedicineService medicineService = PharmacyRESTService.medicineService();
+                                    medicineService.medicineDelete(medicineList.get(i).idMedicine).enqueue(new Callback<Medicine>() {
+                                        @Override
+                                        public void onResponse(Call<Medicine> call, Response<Medicine> response) {
+                                            Toast.makeText(getApplicationContext(), R.string.med_deleted, Toast.LENGTH_SHORT).show();
+                                        }
 
-    }
+                                        @Override
+                                        public void onFailure(Call<Medicine> call, Throwable t) {
+                                            Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                                }
 
-    public void setAdapter() {
-        adapter = new MedicineAdapter(this, medicineList, user);
-        listView.setAdapter(adapter);
-    }
-
-    public void setMedicineList(List<Medicine> medicineList) {
-        this.medicineList = medicineList;
+                            })
+                            .setNegativeButton(R.string.no, null)
+                            .show();
+                    return  true;
+                }
+            });
     }
 
     @Override
