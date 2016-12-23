@@ -103,7 +103,7 @@ public class AddMedicineActivity extends AppCompatActivity {
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        progressDialog.setMessage("Processing...");
+        progressDialog.setMessage(getString(R.string.processing));
 
         floatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -125,7 +125,7 @@ public class AddMedicineActivity extends AppCompatActivity {
                     try {
                         date = dateFormat.parse(editTextDate.getText().toString());
                     } catch (ParseException e) {
-                       editTextDate.setError("invalid format! MM/dd/yyyy");
+                       editTextDate.setError(getString(R.string.invalid_date));
                         return;
                     }
                     medicine.expiration_date = date;
@@ -233,7 +233,7 @@ public class AddMedicineActivity extends AppCompatActivity {
                 public void onResponse(Call<Medicine> call, Response<Medicine> response) {
                     Medicine medicineNew = response.body();
                     if (medicineNew == null) {
-                        Toast.makeText(getApplicationContext(), "Unable to add medicine", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), R.string.unable_add_medicine, Toast.LENGTH_SHORT).show();
                     } else {
                         launchMedicineIntent();
                     }

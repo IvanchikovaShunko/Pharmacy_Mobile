@@ -39,6 +39,7 @@
     <string name="full_name">Full Name</string>
     <string name="phone">Phone</string>
     <string name="about">About</string>
+    <string name="about_you">About</string>
     <string name="age">Age</string>
     <string name="sign_up">Sign up</string>
     <string name="field_required">This field is required</string>
@@ -52,6 +53,47 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="med_deleted">Medicine was deleted</string>
+    <string name="fill_the_fields_to_sign_up">Fill the fields to sign up</string>
+    <string name="fill_medicine">Fill the fields to add medicine</string>
+    <string name="tap_to_login">Tap to login</string>
+    <string name="consist">CONSIST</string>
+    <string name="state">STATE</string>
+    <string name="dosing">DOSING</string>
+    <string name="contradictions">CONTRADICTIONS</string>
+    <string name="gram_in_one">GRAM IN ONE</string>
+    <string name="quantity">QUANTITY</string>
+    <string name="exp_date">EXPIRATION DATE</string>
+    <string name="cost">COST</string>
+    <string name="about_medicine">ABOUT</string>
+    <string name="name_medicine">NAME</string>
+    <string name="invalid_date">Invalid format! MM/dd/yyyy</string>
+    <string name="unable_add_medicine">Unable to add medicine</string>
+    <!--Add medicine-->
+    <string name="consist_add">Consist</string>
+    <string name="state_add">State</string>
+    <string name="dosing_add">Dosing</string>
+    <string name="contradictions_add">Contradictions</string>
+    <string name="gram_in_one_add">Gram in one</string>
+    <string name="quantity_add">Quantity</string>
+    <string name="exp_date_add">Expiration date</string>
+    <string name="cost_add">Cost</string>
+    <string name="about_medicine_add">About</string>
+    <string name="name_medicine_add">Medicine name</string>
+    <string name="processing">Processing…</string>
+    <string name="signing_up">Signing up…</string>
+    <string name="username">Username</string>
+    <string name="password_not_match">Password doesn\'t match</string>
+    <string name="not_match">doesn\'t match</string>
+    <string name="cant_sign_up">Can\'t sign up</string>
+    <string name="loading">Loading…</string>
+    <string name="enable_load_cart">Enable to load cart</string>
+    <string name="medicine_removed_cart">Medicine removed from cart</string>
+    <string name="error_removing">Error while removing</string>
+    <string name="not_logged_in">You\'re not logged in</string>
+    <string name="medicine_added_cart">Medicine added to cart</string>
+    <string name="medicine_in_cart">Medicine already in the cart</string>
+    <string name="signing_in">Signing in...</string>
+    <string name="personal_information">Personal information</string>
 
     <string-array name="gender_array">
         <item>Male</item>

@@ -2,7 +2,6 @@ package bsu.fpmi.pharmacy.pharmacy_mobile.activities;
 
 import android.app.ProgressDialog;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -12,7 +11,6 @@ import java.util.List;
 
 import bsu.fpmi.pharmacy.pharmacy_mobile.R;
 import bsu.fpmi.pharmacy.pharmacy_mobile.adapters.CartAdapter;
-import bsu.fpmi.pharmacy.pharmacy_mobile.adapters.InstructionsAdapter;
 import bsu.fpmi.pharmacy.pharmacy_mobile.api.PharmacyRESTService;
 import bsu.fpmi.pharmacy.pharmacy_mobile.api.entity.Basket;
 import bsu.fpmi.pharmacy.pharmacy_mobile.api.entity.Medicine;
@@ -37,7 +35,7 @@ public class CartActivity extends BaseNavDrawerActivity {
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        progressDialog.setMessage("Loading...");
+        progressDialog.setMessage(getString(R.string.loading));
         progressDialog.show();
 
         mSwipeLayout = (SwipeRefreshLayout) findViewById(R.id.swiperefresh);
@@ -45,6 +43,7 @@ public class CartActivity extends BaseNavDrawerActivity {
         mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                mSwipeLayout.setRefreshing(false);
 
             }
         });
@@ -59,7 +58,7 @@ public class CartActivity extends BaseNavDrawerActivity {
                     cartMedicines = basket.medicines;
                     setAdapter();
                 } else {
-                    Toast.makeText(getApplicationContext(), "Enable to load cart", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.enable_load_cart, Toast.LENGTH_SHORT).show();
                 }
             }
 

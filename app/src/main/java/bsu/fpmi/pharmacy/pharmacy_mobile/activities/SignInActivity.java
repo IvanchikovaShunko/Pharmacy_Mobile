@@ -48,7 +48,7 @@ public class SignInActivity extends AppCompatActivity {
         signUpButton = (Button) findViewById(R.id.signUpButton);
         progressDialog = new ProgressDialog(this);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        progressDialog.setMessage("Signing in...");
+        progressDialog.setMessage(getString(R.string.signing_in));
 
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,9 +66,9 @@ public class SignInActivity extends AppCompatActivity {
             }
         });
         loginWrapper = (TextInputLayout) findViewById(R.id.loginWrapper);
-        loginWrapper.setHint("Login");
+        loginWrapper.setHint(getString(R.string.login));
         passwordWrapper = (TextInputLayout) findViewById(R.id.passwordWrapper);
-        passwordWrapper.setHint("Password");
+        passwordWrapper.setHint(getString(R.string.password));
 
 
 
@@ -143,7 +143,7 @@ public class SignInActivity extends AppCompatActivity {
                 public void onResponse(Call<User> call, Response<User> response) {
                     User user = response.body();
                     if (user == null) {
-                        Toast.makeText(getApplicationContext(), "Incorrect username or password", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), R.string.incorrect, Toast.LENGTH_SHORT).show();
                         loginEditText.requestFocus();
                         progressDialog.hide();
                     } else {

@@ -27,13 +27,14 @@ public class SubscriptionsActivity extends BaseNavDrawerActivity {
         listView = (ListView) findViewById(R.id.list_view_subscriptions);
         progressDialog = new ProgressDialog(this);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        progressDialog.setMessage("Loading...");
+        progressDialog.setMessage(getString(R.string.loading));
 
         mSwipeLayout = (SwipeRefreshLayout) findViewById(R.id.swiperefresh);
         mSwipeLayout.setColorSchemeResources(R.color.colorPrimaryDark);
         mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                mSwipeLayout.setRefreshing(false);
 
             }
         });

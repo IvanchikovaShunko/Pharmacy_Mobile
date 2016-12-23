@@ -77,7 +77,6 @@ public class CartAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 removeFromCart(medicine.idMedicine);
-                Toast.makeText(cartActivity, "Medicine removed from cart", Toast.LENGTH_SHORT).show();
 
 
             }
@@ -90,15 +89,16 @@ public class CartAdapter extends BaseAdapter {
         basketService.userRemoveFromBasket(user.id, medicineId).enqueue(new Callback<Basket>() {
             @Override
             public void onResponse(Call<Basket> call, Response<Basket> response) {
-                if (response.body() != null)
-                cartActivity.setCartMedicines(response.body().medicines);
-                cartActivity.setAdapter();
-                Toast.makeText(cartActivity, "Medicine removed from cart", Toast.LENGTH_SHORT).show();
+                if (response.body() != null) {
+                    cartActivity.setCartMedicines(response.body().medicines);
+                    cartActivity.setAdapter();
+                    Toast.makeText(cartActivity, R.string.medicine_removed_cart, Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
             public void onFailure(Call<Basket> call, Throwable t) {
-                Toast.makeText(cartActivity, "Error while removing", Toast.LENGTH_SHORT).show();
+                Toast.makeText(cartActivity, R.string.error_removing, Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -1,0 +1,107 @@
+<resources>
+    <string name="app_name">Pharmacy</string>
+
+    <string name="drawer_item_profile">Профиль</string>
+    <string name="drawer_item_settings">Настройки</string>
+    <string name="drawer_item_help">Помощь</string>
+    <string name="drawer_item_about">О нас</string>
+    <string name="drawer_item_medicine">Лекарства</string>
+    <string name="drawer_item_instructions">Инструкции</string>
+    <string name="drawer_item_cart">Корзина</string>
+    <string name="drawer_item_subscriptions">Подписки</string>
+    <string name="open_drawer">Open drawer</string>
+    <string name="close_drawer">Close Drawer</string>
+    <string name="my_cart">Моя корзина</string>
+    <string name="my_subscriptions">Мои подписки</string>
+    <string name="my_orders">Мои заказы</string>
+    <string name="name">Имя</string>
+    <string name="address">Адрес</string>
+    <string name="log_out">Выйти</string>
+    <string name="title_activity_login">Войти</string>
+
+    <!-- Strings related to username -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Пароль</string>
+    <string name="action_sign_in">Войти</string>
+    <string name="action_sign_in_short">Войти</string>
+    <string name="error_invalid_email">Неверный логин или пароль</string>
+    <string name="error_invalid_password">Логин или пароль слишком короткие</string>
+    <string name="error_incorrect_password">Неверный пароль</string>
+    <string name="error_field_required">Обязательное поле</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="pharmacy_catalog">Pharmacy Catalog</string>
+    <string name="password">Пароль</string>
+    <string name="email">Email</string>
+    <string name="login">Логин</string>
+    <string name="confirm_password">Подтвердите пароль</string>
+    <string name="full_name">Полное имя</string>
+    <string name="phone">Телефон</string>
+    <string name="about">О нас</string>
+    <string name="about_you">О себе</string>
+
+    <string name="age">Возраст</string>
+    <string name="sign_up">Регистрация</string>
+    <string name="field_required">Обязательное поле</string>
+    <string name="incorrect">Неверный логин или пароль</string>
+    <string name="unable_to_login">Невозможно войти в приложение</string>
+    <string name="add_medicine">Добавить лекарство</string>
+    <string name="gender">Пол</string>
+    <string name="delete_medicine">Удалить лекарство</string>
+    <string name="deleting_medicine">Удаление лекарства</string>
+    <string name="confirm_delete_medicine">Вы действительно хотите удалить лекарство?</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="med_deleted">Лекарство было удалено</string>
+    <string name="fill_the_fields_to_sign_up">Заполните поля для регистрации</string>
+    <string name="fill_medicine">Заполните поля</string>
+    <string name="tap_to_login">Нажмите, чтобы войти</string>
+    <string name="consist">СОСТАВ</string>
+    <string name="state">ФОРМА</string>
+    <string name="dosing">ДОЗА</string>
+    <string name="contradictions">ПРОТИВОПОКАЗАНИЯ</string>
+    <string name="gram_in_one">ОБЪЕМ</string>
+    <string name="quantity">КОЛИЧСЕТВО</string>
+    <string name="exp_date">СРОК ГОДНОСТИ</string>
+    <string name="cost">ЦЕНА</string>
+    <string name="about_medicine">ОПИСАНИЕ</string>
+    <string name="name_medicine">НАЗВАНИЕ</string>
+    <string name="invalid_date">Неверный формат! MM/dd/yyyy</string>
+    <string name="unable_add_medicine">Невозможно добавить лекарство</string>
+    <!--Add medicine-->
+
+    <string name="consist_add">Состав</string>
+    <string name="state_add">Форма</string>
+    <string name="dosing_add">Доза</string>
+    <string name="contradictions_add">Противопоказания</string>
+    <string name="gram_in_one_add">Объем</string>
+    <string name="quantity_add">Количество</string>
+    <string name="exp_date_add">Срок годности</string>
+    <string name="cost_add">Цена</string>
+    <string name="about_medicine_add">Описание</string>
+    <string name="name_medicine_add">Название леарства</string>
+    <string name="processing">Выполняется…</string>
+    <string name="signing_up">Регистрация…</string>
+    <string name="username">Логин</string>
+    <string name="password_not_match">Пароли не совпадают</string>
+    <string name="not_match">Не совпадают</string>
+    <string name="cant_sign_up">Невозможно зарегистрироваиться</string>
+    <string name="loading">Загрузка…</string>
+    <string name="enable_load_cart">Невозможно загрузить корзину</string>
+    <string name="medicine_removed_cart">Лекарство удалено из корзины</string>
+    <string name="error_removing">Ошибка во время удаления</string>
+    <string name="not_logged_in">Войдите в приложение</string>
+    <string name="medicine_added_cart">Лекарство добавлено в корзину</string>
+
+
+    <string-array name="gender_array">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+    <string name="medicine_in_cart">Лекарство уже есть в корзине</string>
+    <string name="signing_in">Вход…</string>
+    <string name="personal_information">Личная информация</string>
+
+
+</resources>

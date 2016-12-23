@@ -39,7 +39,7 @@ public class InstructionsActivity extends BaseNavDrawerActivity {
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        progressDialog.setMessage("Loading...");
+        progressDialog.setMessage(getString(R.string.loading));
 
         mSwipeLayout = (SwipeRefreshLayout) findViewById(R.id.swiperefresh);
         mSwipeLayout.setColorSchemeResources(R.color.colorPrimaryDark);

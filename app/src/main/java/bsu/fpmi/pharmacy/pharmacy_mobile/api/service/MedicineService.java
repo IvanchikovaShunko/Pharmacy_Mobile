@@ -40,7 +40,7 @@ public interface MedicineService {
     );
 
     @POST("medicine/delete/{id}")
-    Call<Medicine> medicineDelete(
+    Call<Integer> medicineDelete(
             @Path("id") int id
     );
 

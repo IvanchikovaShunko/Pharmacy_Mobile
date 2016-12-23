@@ -26,6 +26,7 @@
                 app:titleTextColor="@android:color/white"
                 android:theme="@style/ToolbarTheme" />
 
+
             <ImageView
                 android:id="@+id/main.backdrop"
                 android:layout_width="match_parent"
@@ -33,19 +34,39 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/w"
                 app:layout_collapseMode="parallax"
-                android:layout_height="100dp"
-                android:layout_below="@+id/toolbar" />
+                android:layout_below="@+id/toolbar"
+                android:layout_height="160dp" />
+            <ImageView
+                android:id="@+id/img_profile"
+                app:srcCompat="@drawable/profile"
+                android:layout_alignParentRight="false"
+                android:layout_centerVertical="false"
+                android:layout_below="@+id/toolbar"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="24dp"
+                android:layout_marginLeft="32dp"
+                android:layout_width="94dp"
+                android:layout_height="94dp" />
 
             <TextView
                 android:text="username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/username_TextView"
-                android:textSize="18sp"
-                android:textColor="@android:color/black"
-                android:layout_marginTop="-32dp"
+                android:textSize="22sp"
+                android:textColor="@android:color/white"
                 android:layout_marginLeft="16dp"
-                android:layout_below="@+id/main.backdrop" />
+                android:layout_toRightOf="@+id/img_profile"
+                android:layout_marginRight="16dp"
+                android:layout_centerVertical="false"
+                android:layout_below="@+id/toolbar"
+                android:layout_marginTop="52dp"
+                android:textStyle="normal|bold"
+                android:background="@drawable/button_shape"
+                android:paddingRight="16dp"
+                android:paddingLeft="16dp"
+                android:paddingBottom="4dp"
+                android:paddingTop="4dp" />
 
             <ScrollView
                 android:layout_width="match_parent"
@@ -67,7 +88,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="Personal information" />
+                        android:text="@string/personal_information" />
 
                     <android.support.v7.widget.CardView
                         android:layout_width="match_parent"
@@ -213,7 +234,7 @@
                                     android:id="@+id/textView7"
                                     android:layout_width="64dp"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/about"
+                                    android:text="@string/about_you"
                                     android:textStyle="normal|bold"
                                     android:layout_alignBaseline="@+id/about_TextView"
                                     android:layout_alignBottom="@+id/about_TextView"
@@ -296,26 +317,6 @@
                 </LinearLayout>
             </ScrollView>
 
-            <!--<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-                <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:background="@android:color/background_light"-->
-                <!--android:fitsSystemWindows="true"-->
-                <!--android:layout_below="@+id/toolbar"-->
-                <!--android:id="@+id/coord"-->
-                <!--android:layout_height="wrap_content">-->
-
-                <!--<android.support.design.widget.FloatingActionButton-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_margin="@dimen/activity_horizontal_margin"-->
-                    <!--android:src="@drawable/ic_mode_edit_white_24dp"-->
-                    <!--app:fabSize="normal"-->
-                    <!--app:layout_anchor="@id/main.backdrop"-->
-                    <!--app:layout_anchorGravity="bottom|right|end"-->
-                    <!--android:id="@+id/fab" />-->
-
-            <!--</android.support.design.widget.CoordinatorLayout>-->
 
         </RelativeLayout>
 

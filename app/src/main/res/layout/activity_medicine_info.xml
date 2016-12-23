@@ -29,7 +29,7 @@
         android:layout_below="@+id/toolbar">
 
         <TextView
-            android:text="NAME"
+            android:text="@string/name_medicine"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView8"
@@ -52,7 +52,7 @@
         </android.support.v7.widget.CardView>
 
         <TextView
-            android:text="ABOUT"
+            android:text="@string/about_medicine"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView9"
@@ -79,7 +79,7 @@
         </android.support.v7.widget.CardView>
 
         <TextView
-            android:text="CONSIST"
+            android:text="@string/consist"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView10"
@@ -104,7 +104,7 @@
         </android.support.v7.widget.CardView>
 
         <TextView
-            android:text="STATE"
+            android:text="@string/state"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView11"
@@ -129,7 +129,7 @@
         </android.support.v7.widget.CardView>
 
         <TextView
-            android:text="DOSING"
+            android:text="@string/dosing"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView12"
@@ -154,7 +154,7 @@
         </android.support.v7.widget.CardView>
 
         <TextView
-            android:text="CONTRADICTIONS"
+            android:text="@string/contradictions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView13"
@@ -179,7 +179,7 @@
         </android.support.v7.widget.CardView>
 
         <TextView
-            android:text="GRAM IN ONE"
+            android:text="@string/gram_in_one"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView14"
@@ -204,7 +204,7 @@
         </android.support.v7.widget.CardView>
 
         <TextView
-            android:text="QUANTITY"
+            android:text="@string/quantity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView15"
@@ -229,7 +229,7 @@
         </android.support.v7.widget.CardView>
 
         <TextView
-            android:text="EXPIRATION DATE"
+            android:text="@string/exp_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView16"
@@ -254,7 +254,7 @@
         </android.support.v7.widget.CardView>
 
         <TextView
-            android:text="COST"
+            android:text="@string/cost"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView17"

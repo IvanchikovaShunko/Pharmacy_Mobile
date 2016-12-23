@@ -68,15 +68,15 @@ public class MedicineAdapter extends BaseAdapter {
             PharmacyApp.PICASSO.load(medicine.imagePath).into(imageView);
 
         ImageView addToCartImageView = (ImageView) cView.findViewById(R.id.add_to_cart_imageView);
+        ImageView subscribeImageView = (ImageView) cView.findViewById(R.id.subscribe_imageView);
+        if (user == null) {
+            addToCartImageView.setVisibility(View.INVISIBLE);
+            subscribeImageView.setVisibility(View.INVISIBLE);
+        }
         addToCartImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (user == null)
-                    Toast.makeText(context, "You're not logged in", Toast.LENGTH_SHORT).show();
-                else {
                     addMedicineToCart(medicine.idMedicine);
-                }
-
             }
         });
 
@@ -88,12 +88,12 @@ public class MedicineAdapter extends BaseAdapter {
         basketService.userAddToBasket(user.id, medicineId).enqueue(new Callback<Basket>() {
             @Override
             public void onResponse(Call<Basket> call, Response<Basket> response) {
-                Toast.makeText(context, "Medicine added to cart", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, R.string.medicine_added_cart, Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFailure(Call<Basket> call, Throwable t) {
-                Toast.makeText(context, "Medicine already in the cart", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, R.string.medicine_in_cart, Toast.LENGTH_SHORT).show();
             }
         });
     }

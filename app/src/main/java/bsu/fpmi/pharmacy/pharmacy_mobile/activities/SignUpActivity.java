@@ -68,28 +68,28 @@ public class SignUpActivity extends AppCompatActivity {
         });
         progressDialog = new ProgressDialog(this);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        progressDialog.setMessage("Signing up...");
+        progressDialog.setMessage(getString(R.string.signing_up));
 
         usernameWrapper = (TextInputLayout) findViewById(R.id.usernameWrapper);
-        usernameWrapper.setHint("Username");
+        usernameWrapper.setHint(getString(R.string.username));
         emailWrapper = (TextInputLayout) findViewById(R.id.emailWrapper);
-        emailWrapper.setHint("Email");
+        emailWrapper.setHint(getString(R.string.email));
         passwordWrapper = (TextInputLayout) findViewById(R.id.passwordWrapper);
-        passwordWrapper.setHint("Password");
+        passwordWrapper.setHint(getString(R.string.password));
         confirmPasswordWrapper = (TextInputLayout) findViewById(R.id.confirmPasswordWrapper);
-        confirmPasswordWrapper.setHint("Confirm Password");
+        confirmPasswordWrapper.setHint(getString(R.string.confirm_password));
         fullNameWrapper = (TextInputLayout) findViewById(R.id.fullNameWrapper);
-        fullNameWrapper.setHint("Full Name");
+        fullNameWrapper.setHint(getString(R.string.full_name));
         ageWrapper = (TextInputLayout) findViewById(R.id.ageWrapper);
-        ageWrapper.setHint("Age");
+        ageWrapper.setHint(getString(R.string.age));
         genderWrapper = (TextInputLayout) findViewById(R.id.genderWrapper);
-        genderWrapper.setHint("Gender");
+        genderWrapper.setHint(getString(R.string.gender));
         addressWrapper = (TextInputLayout) findViewById(R.id.addressWrapper);
-        addressWrapper.setHint("Address");
+        addressWrapper.setHint(getString(R.string.address));
         phoneWrapper = (TextInputLayout) findViewById(R.id.phoneWrapper);
-        phoneWrapper.setHint("Phone");
+        phoneWrapper.setHint(getString(R.string.phone));
         aboutWrapper = (TextInputLayout) findViewById(R.id.aboutWrapper);
-        aboutWrapper.setHint("About");
+        aboutWrapper.setHint(getString(R.string.about_you));
 
     }
 
@@ -122,9 +122,9 @@ public class SignUpActivity extends AppCompatActivity {
     private boolean passwordsMatching(String pass, String confPass) {
         boolean res = pass.equals(confPass);
         if (!res) {
-            Toast.makeText(getApplicationContext(), "Password doesn't match", Toast.LENGTH_SHORT).show();
-            confPasswordEditText.setError("doesn't match");
-            passwordEditText.setError("doesn't match");
+            Toast.makeText(getApplicationContext(), R.string.password_not_match, Toast.LENGTH_SHORT).show();
+            confPasswordEditText.setError(getString(R.string.not_match));
+            passwordEditText.setError(getString(R.string.not_match));
             confPasswordEditText.requestFocus();
         }
 
@@ -213,7 +213,7 @@ public class SignUpActivity extends AppCompatActivity {
                   public void onResponse(Call<User> call, Response<User> response) {
                       User user = response.body();
                       if (user == null) {
-                          Toast.makeText(getApplicationContext(), "Can't sign up", Toast.LENGTH_SHORT).show();
+                          Toast.makeText(getApplicationContext(), R.string.cant_sign_up, Toast.LENGTH_SHORT).show();
                       } else {
                           Intent intent = new Intent(getApplicationContext(), MedicineActivity.class);
                           intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);

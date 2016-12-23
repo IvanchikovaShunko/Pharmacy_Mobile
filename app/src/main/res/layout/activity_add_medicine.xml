@@ -15,7 +15,7 @@
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="@style/ToolbarTheme"
-        app:title="Add medicine"
+        app:title="@string/add_medicine"
         app:titleTextColor="@android:color/white" />
 
     <android.support.design.widget.CoordinatorLayout
@@ -44,7 +44,7 @@
                     android:layout_marginTop="16dp"
                     android:layout_weight="1"
                     android:gravity="center_horizontal"
-                    android:text="Fill the fields to add medicine"
+                    android:text="@string/fill_medicine"
                     android:textSize="16sp"
                     android:layout_marginBottom="8dp" />
 
@@ -52,7 +52,7 @@
                     android:id="@+id/nameWrapper"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Medicine name"
+                    android:hint="@string/name_medicine_add"
                     android:padding="8dp">
 
                     <EditText
@@ -67,7 +67,7 @@
                     android:id="@+id/stateWrapper"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="State"
+                    android:hint="@string/state_add"
                     android:padding="8dp">
 
                     <EditText
@@ -82,7 +82,7 @@
                     android:id="@+id/aboutWrapper"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="About"
+                    android:hint="@string/about_medicine_add"
                     android:padding="8dp">
 
                     <EditText
@@ -97,7 +97,7 @@
                     android:id="@+id/consistWrapper"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Consist"
+                    android:hint="@string/consist_add"
                     android:padding="8dp">
 
                     <EditText
@@ -112,7 +112,7 @@
                     android:id="@+id/dosingWrapper"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Dosing"
+                    android:hint="@string/dosing_add"
                     android:padding="8dp">
 
                     <EditText
@@ -127,7 +127,7 @@
                     android:id="@+id/contradictionsWrapper"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Contradictions"
+                    android:hint="@string/contradictions_add"
                     android:padding="8dp">
 
                     <EditText
@@ -142,7 +142,7 @@
                     android:id="@+id/dateWrapper"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Expiration Date"
+                    android:hint="@string/exp_date_add"
                     android:padding="8dp">
 
                     <EditText
@@ -157,7 +157,7 @@
                     android:id="@+id/gramInOneWrapper"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Gram in one"
+                    android:hint="@string/gram_in_one_add"
                     android:padding="8dp">
 
                     <EditText
@@ -172,7 +172,7 @@
                     android:id="@+id/costWrapper"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Cost"
+                    android:hint="@string/cost_add"
                     android:padding="8dp">
 
                     <EditText
@@ -187,7 +187,7 @@
                     android:id="@+id/quantityWrapper"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Quantity"
+                    android:hint="@string/quantity_add"
                     android:padding="8dp">
 
                     <EditText

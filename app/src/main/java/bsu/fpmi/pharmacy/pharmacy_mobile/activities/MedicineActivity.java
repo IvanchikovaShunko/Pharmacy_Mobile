@@ -44,7 +44,7 @@ public class MedicineActivity extends BaseNavDrawerActivity {
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        progressDialog.setMessage("Loading...");
+        progressDialog.setMessage(getString(R.string.loading));
 
         mSwipeLayout = (SwipeRefreshLayout) findViewById(R.id.swiperefresh);
         mSwipeLayout.setColorSchemeResources(R.color.colorPrimaryDark);
@@ -121,15 +121,19 @@ public class MedicineActivity extends BaseNavDrawerActivity {
                             .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    MedicineService medicineService = PharmacyRESTService.medicineService();
-                                    medicineService.medicineDelete(medicineList.get(i).idMedicine).enqueue(new Callback<Medicine>() {
+                                    final MedicineService medicineService = PharmacyRESTService.medicineService();
+                                    medicineService.medicineDelete(medicineList.get(i).idMedicine).enqueue(new Callback<Integer>() {
                                         @Override
-                                        public void onResponse(Call<Medicine> call, Response<Medicine> response) {
-                                            Toast.makeText(getApplicationContext(), R.string.med_deleted, Toast.LENGTH_SHORT).show();
+                                        public void onResponse(Call<Integer> call, Response<Integer> response) {
+                                            if (response.body().equals(200)) {
+                                                medicineList.remove(i);
+                                                setAdapter();
+                                                Toast.makeText(getApplicationContext(), R.string.med_deleted, Toast.LENGTH_SHORT).show();
+                                            }
                                         }
 
                                         @Override
-                                        public void onFailure(Call<Medicine> call, Throwable t) {
+                                        public void onFailure(Call<Integer> call, Throwable t) {
                                             Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
                                         }
                                     });
